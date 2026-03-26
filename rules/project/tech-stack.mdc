@@ -1,0 +1,37 @@
+﻿---
+description: РўРµС…РЅРѕР»РѕРіРёС‡РµСЃРєРёР№ СЃС‚РµРє AI Tender Tool (Frontend)
+alwaysApply: true
+---
+
+# РЎС‚РµРє AI Tender Tool
+
+## Frontend
+
+- **React 18.3** вЂ” UI.
+- **TypeScript** вЂ” С‚РёРїРёР·Р°С†РёСЏ (С„Р°Р№Р»С‹ .ts/.tsx).
+- **Vite 6** вЂ” СЃР±РѕСЂРєР° Рё dev-СЃРµСЂРІРµСЂ (`npm run dev`, `npm run build`, РІС‹С…РѕРґ РІ `build/`).
+- **Tailwind CSS** вЂ” СЃС‚РёР»РёР·Р°С†РёСЏ; РіР»РѕР±Р°Р»СЊРЅС‹Рµ СЃС‚РёР»Рё РІ `src/styles/globals.css`.
+- **UI:** Radix UI (РїСЂРёРјРёС‚РёРІС‹: dialog, dropdown, select, tabs, form Рё РґСЂ.), Lucide React (РёРєРѕРЅРєРё), Sonner (toast), СЃРѕР±СЃС‚РІРµРЅРЅС‹Рµ РєРѕРјРїРѕРЅРµРЅС‚С‹ РІ `src/components/ui/`.
+- **РЈС‚РёР»РёС‚С‹ СЃС‚РёР»РµР№:** `class-variance-authority`, `clsx`, `tailwind-merge` (cn РІ `src/components/ui/utils.ts`).
+- **Р¤РѕСЂРјС‹:** react-hook-form.
+- **Р”Р°РЅРЅС‹Рµ/СЌРєСЃРїРѕСЂС‚:** recharts (РіСЂР°С„РёРєРё), xlsx (Excel), next-themes (С‚РµРјС‹).
+- **РџСЂРѕС‡РµРµ:** cmdk (command palette), vaul (drawer), react-resizable-panels, react-day-picker, input-otp, embla-carousel-react.
+
+## РђСЂС…РёС‚РµРєС‚СѓСЂР°
+
+- SPA РЅР° Vite, РєР»РёРµРЅС‚СЃРєРёР№ СЂРѕСѓС‚РёРЅРі.
+- Р”Р°РЅРЅС‹Рµ: РјРѕРєРѕРІС‹Рµ/Р»РѕРєР°Р»СЊРЅС‹Рµ РІ `src/data/` (tendersData, mockTenders, mockAnalysis Рё С‚.Рґ.); РїСЂРё РїРѕСЏРІР»РµРЅРёРё Р±СЌРєРµРЅРґР° вЂ” API-СЃР»РѕР№ РІ РѕС‚РґРµР»СЊРЅРѕРј РјРѕРґСѓР»Рµ.
+- РљРѕРЅС‚РµРєСЃС‚С‹: `src/contexts/` (TagsContext, SettingsContext).
+- РўРёРїС‹: `src/types/` (tender, roles, index).
+- РЎС‚СЂР°РЅРёС†С‹: `src/pages/` (TendersPage, AnalyticsPage Рё РґСЂ.); С„РёС‡Рё РІ `src/components/` (tender, team, settings, search, support Рё С‚.Рґ.).
+
+## РћСЃРѕР±РµРЅРЅРѕСЃС‚Рё РїСЂРѕРµРєС‚Р°
+
+- РРЅСЃС‚СЂСѓРјРµРЅС‚ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ С‚РµРЅРґРµСЂР°РјРё: РєР°СЂС‚РѕС‡РєРё С‚РµРЅРґРµСЂРѕРІ, Р°РЅР°Р»РёС‚РёРєР°, РєРѕРјР°РЅРґР°, РЅР°СЃС‚СЂРѕР№РєРё, РґРѕРєСѓРјРµРЅС‚С‹, СЃРјРµС‚С‹, С‡РµРє-Р»РёСЃС‚С‹.
+- Р”РѕРєСѓРјРµРЅС‚Р°С†РёСЏ РїРѕ С„РёС‡Р°Рј: `src/docs/` (РЅР°РїСЂРёРјРµСЂ permissions-implementation.md).
+
+## Backend
+
+Р‘СЌРєРµРЅРґ РІ РїСЂРѕРµРєС‚Рµ РїРѕРєР° РЅРµ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ. РџСЂРё РґРѕР±Р°РІР»РµРЅРёРё вЂ” РѕРїРёСЃР°С‚СЊ СЃС‚РµРє Рё API РІ РґРѕРєСѓРјРµРЅС‚Р°С†РёРё Рё РІ СЌС‚РѕРј РїСЂР°РІРёР»Рµ.
+
+
