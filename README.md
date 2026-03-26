@@ -1,80 +1,81 @@
 # Universal Cursor Rules
 
-Набор правил для Cursor, который можно использовать в любом проекте.
+A pack of Cursor rules you can use in any project.
 
-Это не “магия для нейросети”, а практичный каркас процесса:
-- как выбирать нужные правила под тип задачи;
-- какие проверки обязательны перед финальным ответом;
-- как снизить риск регрессий и выдуманных решений.
+This is not “magic for the model”, but a practical process skeleton:
+- how to pick the right rules for the task type;
+- which checks must happen before a final answer;
+- how to reduce regressions and made-up solutions.
 
-## Зачем нужны эти правила
+## Why these rules
 
-- чтобы ответы агента были предсказуемыми, а не “как повезёт”;
-- чтобы код-ревью было быстрее (есть единый чеклист качества);
-- чтобы меньше ломались API/контракты/миграции;
-- чтобы слабые модели давали более стабильный результат за счёт процесса.
+- more predictable agent answers, not “whatever works today”;
+- faster code review (shared quality checklist);
+- fewer broken APIs, contracts, and migrations;
+- weaker models still behave more consistently thanks to process.
 
-## Как это улучшает качество кода
+## How this improves code quality
 
-- заставляет проверять изменения, а не просто “написать код”;
-- вводит минимальный Definition of Done;
-- разделяет low/medium/high риск и глубину проверок;
-- заставляет фиксировать trade-offs и совместимость при архитектурных/API решениях.
+- encourages reviewing changes, not only “shipping code”;
+- introduces a minimal Definition of Done;
+- separates low/medium/high risk and depth of review;
+- forces trade-offs and compatibility to be stated for architecture/API work.
 
-## Что внутри (верхнеуровнево)
+## Contents (overview)
 
-- `cursor-orchestrator.mdc` — точка входа, маршрут по правилам.
-- `task-intent-routing.mdc` — классификация задачи (feature/bugfix/api/performance и т.д.) и какие правила включать.
-- `definition-of-done-gates.mdc` — что обязательно должно быть сделано перед завершением.
-- `risk-scoring-and-review-depth.mdc` — уровень риска и обязательная глубина проверки.
-- `api-contract-gate.mdc`, `architecture-planning-gate.mdc`, `anti-hallucination-verification.mdc` — профильные guardrails.
-- тематические правила: i18n, миграции, тесты, линтер, документация и др.
+- `cursor-orchestrator.mdc` — entry point and rule routing.
+- `task-intent-routing.mdc` — task classification (feature/bugfix/api/performance, etc.) and which rules to load.
+- `definition-of-done-gates.mdc` — what must be done before finishing.
+- `risk-scoring-and-review-depth.mdc` — risk level and required review depth.
+- `api-contract-gate.mdc`, `architecture-planning-gate.mdc`, `anti-hallucination-verification.mdc` — focused guardrails.
+- topic rules: i18n, migrations, tests, linter, documentation, and more.
 
-## Что важно понимать заранее
+## What to know upfront
 
-- Эти правила работают лучше всего, если:
-  - в проекте есть профильные **Skills** под конкретный стек/домен;
-  - проект хорошо покрыт актуальной документацией;
-  - подключены нужные проекту **MCP** (где это требуется).
-- Сами по себе правила не заменяют ни документацию, ни доменные навыки.
+These rules work best when:
+- the project has **Skills** tailored to your stack/domain;
+- the project is covered by up-to-date documentation;
+- required **MCP** integrations are enabled where needed.
 
-## Что такое оркестратор
+Rules alone do not replace documentation or domain expertise.
 
-`cursor-orchestrator.mdc` — это не одно “правило про всё”, а слой координации всего набора:
-- определяет, какие правила читать первыми;
-- связывает routing (`task-intent-routing`) и gate-правила;
-- задаёт последовательность: контекст -> реализация -> проверки.
+## What the orchestrator is
 
-То есть оркестратор = комплекс правил + порядок их применения.
+`cursor-orchestrator.mdc` is not a single “rule for everything”; it coordinates the whole set:
+- which rules to read first;
+- how routing (`task-intent-routing`) connects to gate rules;
+- order: context → implementation → checks.
+
+So: orchestrator = the rule set + order of application.
 
 ## What is included
 
-- **`rules/global/*.mdc`** — глобальные переиспользуемые правила. При установке на свой компьютер **нужны только эти файлы** (см. [Installation](#installation)).
+- **`rules/global/*.mdc`** — reusable global rules. For installation on your machine **you only need these files** (see [Installation](#installation)).
 
-- **`.github/workflows/`** — нужна **только для GitHub**: при push в этот репозиторий запускаются проверки качества правил. **На компьютер пользователя при установке Cursor это не копируют и не настраивают** — для работы агента значения не имеет.
+- **`.github/workflows/`** — **GitHub only**: when you push to this repo, workflows run quality checks on the rules. **Do not copy or configure this for local Cursor setup** — it does not affect the agent on your computer.
 
 ## Installation
 
-Инструкция одна: **все файлы `*.mdc` из папки репозитория `rules/global/` скопировать в папку правил Cursor** (проводником, Finder или любым файловым менеджером — консоль не нужна).
+Single idea: **copy all `*.mdc` files from `rules/global/` in this repo into Cursor’s rules folder** (File Explorer, Finder, or any file manager — no terminal required).
 
-1. **Получите копию репозитория:** на GitHub откройте https://github.com/alfarius42/universal_cursor_rules → **Code → Download ZIP**, распакуйте архив. Либо используйте уже клонированную папку — суть та же.
-2. В распакованной (или клонированной) копии откройте каталог **`rules/global/`** — в нём лежат все правила (`*.mdc`).
-3. **Выберите назначение:**
-   - **Глобально** (все проекты на этом компьютере) — скопируйте все `.mdc` в папку глобальных правил Cursor:
+1. **Get a copy of the repo:** open https://github.com/alfarius42/universal_cursor_rules → **Code → Download ZIP** and extract it, or use an existing clone.
+2. In that copy, open **`rules/global/`** — all rule files (`*.mdc`) are there.
+3. **Choose the destination:**
+   - **Globally** (all projects on this machine) — copy every `.mdc` into Cursor’s global rules folder:
 
-   | Система | Путь назначения |
-   |--------|------------------|
-   | **Windows** | `C:\Users\<логин>\.cursor\rules\` — вставьте в адресную строку Проводника (подставьте свой логин Windows) и нажмите Enter. Папки `.cursor` и `rules` создайте при отсутствии. |
-   | **macOS** | `~/.cursor/rules/` (Finder: **Переход → Переход к папке…** → `~/.cursor/rules`). |
+   | OS | Destination path |
+   |----|------------------|
+   | **Windows** | `C:\Users\<username>\.cursor\rules\` — paste into Explorer’s address bar (use your Windows username) and press Enter. Create `.cursor` and `rules` if missing. |
+   | **macOS** | `~/.cursor/rules/` (Finder: **Go → Go to Folder…** → `~/.cursor/rules`). |
    | **Linux** | `~/.cursor/rules/` |
 
-   - **Только один репозиторий** — скопируйте те же файлы в **`<корень_проекта>/.cursor/rules/`** (создайте вложенные папки `.cursor` и `rules`, если их нет).
+   - **Single project only** — copy the same files to **`<project_root>/.cursor/rules/`** (create `.cursor` and `rules` if needed).
 
-4. Перезапустите Cursor или **Developer: Reload Window**, чтобы подхватились файлы.
+4. Restart Cursor or run **Developer: Reload Window** so the files load.
 
-**Обновление правил:** снова скачайте свежий ZIP (или обновите клон) и перекопируйте содержимое `rules/global/` в ту же папку назначения, подтверждая замену файлов.
+**Updating rules:** download a fresh ZIP (or `git pull` your clone) and copy `rules/global/` again to the same destination, replacing files when prompted.
 
-Если репозиторий уже лежит у вас в виде git-клона, достаточно после `git pull` снова скопировать `rules/global/*.mdc` в `~/.cursor/rules` или в `.cursor/rules` проекта — тем же способом, что в шагах выше.
+If you already use a git clone, after `git pull` copy `rules/global/*.mdc` to `~/.cursor/rules` or the project’s `.cursor/rules` the same way as above.
 
 ### Verify installation
 
@@ -90,7 +91,7 @@ Quick check:
 
 - ask Cursor to classify a task intent (`feature`, `bugfix`, `api`, etc.)
 - confirm it references rules from `task-intent-routing.mdc`
-- run one small task and verify final answer follows DoD blocks
+- run one small task and verify the final answer follows DoD blocks
 
 ### Smoke test after installation (1 minute)
 
@@ -104,7 +105,7 @@ Quick check:
 ### Uninstall / rollback
 
 - remove copied `.mdc` files from:
-  - global install: `~/.cursor/rules` (Windows: `C:\Users\<логин>\.cursor\rules`)
+  - global install: `~/.cursor/rules` (Windows: `C:\Users\<username>\.cursor\rules`)
   - project install: `<repo>/.cursor/rules`
 - reload Cursor
 
@@ -122,27 +123,27 @@ Start with:
 
 ### Rules are not applied after installation
 
-- reload Cursor window or restart Cursor completely
-- verify files exist in active rules location:
-  - global: `~/.cursor/rules` (Windows: `C:\Users\<логин>\.cursor\rules`)
+- reload the Cursor window or restart Cursor completely
+- verify files exist in the active rules location:
+  - global: `~/.cursor/rules` (Windows: `C:\Users\<username>\.cursor\rules`)
   - project: `<repo>/.cursor/rules`
 
 ### Global and project rules conflict
 
 - keep one source of truth per repository when possible
-- if both are used, ensure project-local rules are intentionally overriding global behavior
+- if both are used, ensure project-local rules intentionally override global behavior
 - remove stale duplicates to avoid ambiguous guidance
 
-### Wrong folder/path used during install
+### Wrong folder or path during install
 
-- откройте целевую папку в Проводнике / Finder и убедитесь, что там лежат те же `.mdc`, что и в `rules/global/` (например `cursor-orchestrator.mdc`, `task-intent-routing.mdc`).
+- open the destination folder in Explorer / Finder and confirm it contains the same `.mdc` files as `rules/global/` (e.g. `cursor-orchestrator.mdc`, `task-intent-routing.mdc`).
 
 ## Recommended rollout in a new team
 
 1. Enable orchestrator + routing first.
 2. Add DoD/risk/API gates.
 3. Add performance gate (`algorithm-complexity-selection.mdc`) for backend/data tasks.
-4. Review first 1-2 sprints and tune rule wording for your domain.
+4. Review the first 1–2 sprints and tune rule wording for your domain.
 
 ## Limitations
 
@@ -159,4 +160,4 @@ Please keep changes:
 - portable across machines and OS
 - clear for external users (not only original authors)
 - free from secrets and private infrastructure references
-- in `rules/global/*.mdc` — относительные пути к репозиторию (без абсолютных путей к вашей машине); при push сработают проверки из `.github/workflows/`
+- in `rules/global/*.mdc`, use repo-relative paths (no absolute paths to your machine); pushes are checked by `.github/workflows/`
