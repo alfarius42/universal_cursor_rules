@@ -2,7 +2,7 @@
 
 A pack of Cursor rules you can use in any project.
 
-This is not “magic for the model”, but a practical process skeleton:
+This is a practical process skeleton:
 - how to pick the right rules for the task type;
 - which checks must happen before a final answer;
 - how to reduce regressions and made-up solutions.
