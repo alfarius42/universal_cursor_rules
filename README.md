@@ -64,7 +64,7 @@
 
    | Система | Путь назначения |
    |--------|------------------|
-   | **Windows** | `%USERPROFILE%\.cursor\rules\` (вставьте в адресную строку Проводника и нажмите Enter). Полный вид: `C:\Users\<логин>\.cursor\rules\`. Папки `.cursor` и `rules` создайте при отсутствии. |
+   | **Windows** | `C:\Users\<логин>\.cursor\rules\` — вставьте в адресную строку Проводника и нажмите Enter (подставьте свой логин Windows вместо `<логин>`). Папки `.cursor` и `rules` создайте при отсутствии. |
    | **macOS** | `~/.cursor/rules/` (Finder: **Переход → Переход к папке…** → `~/.cursor/rules`). |
    | **Linux** | `~/.cursor/rules/` |
 
@@ -104,7 +104,7 @@ Quick check:
 ### Uninstall / rollback
 
 - remove copied `.mdc` files from:
-  - global install: `~/.cursor/rules` (or `%USERPROFILE%\.cursor\rules`)
+  - global install: `~/.cursor/rules` (Windows: `C:\Users\<логин>\.cursor\rules`)
   - project install: `<repo>/.cursor/rules`
 - reload Cursor
 
@@ -124,7 +124,7 @@ Start with:
 
 - reload Cursor window or restart Cursor completely
 - verify files exist in active rules location:
-  - global: `~/.cursor/rules` (Windows: `%USERPROFILE%\.cursor\rules`)
+  - global: `~/.cursor/rules` (Windows: `C:\Users\<логин>\.cursor\rules`)
   - project: `<repo>/.cursor/rules`
 
 ### Global and project rules conflict
@@ -139,7 +139,7 @@ Start with:
 
 ### CI fails on path safety check
 
-- remove machine-specific absolute paths (`C:\...`, `/Users/...`, `%USERPROFILE%`)
+- remove machine-specific absolute paths (`C:\...`, `/Users/...`, `/home/...`)
 - replace with repo-relative references (for example `./rules/global/...`)
 
 ### CI fails on route integrity check
@@ -163,7 +163,7 @@ Start with:
 
 ## CI validation in this repository
 
-- **Path Safety Check**: fails on local machine absolute paths (`C:\...`, `/Users/...`, `%USERPROFILE%`, etc.).
+- **Path Safety Check**: fails on local machine absolute paths (`C:\...`, `/Users/...`, `/home/...`, etc.).
 - **Route Integrity Check**: fails when `task-intent-routing.mdc` references a missing `.mdc` rule.
 
 ## Path policy (important)
