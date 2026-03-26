@@ -13,8 +13,7 @@ This repository is intended to make rule-based agent governance portable between
 
 ## What is mirrored
 
-- Project rules: `rules/project/*.mdc`
-- Global user rules: `rules/global/*.mdc`
+- Unified global rule set: `rules/global/*.mdc`
 
 ## Why this exists
 
@@ -25,8 +24,7 @@ This repository is intended to make rule-based agent governance portable between
 
 ## Repository structure
 
-- `rules/project/` - project-scoped governance rules
-- `rules/global/` - user/global rules reused across projects
+- `rules/global/` - all mirrored rules, normalized for global reuse
 - `.github/workflows/` - validation workflow for path safety
 
 ## Path safety policy
@@ -49,7 +47,7 @@ GitHub Actions validates mirror safety on every push/PR:
 
 ## How to use in another project
 
-1. Copy required rules from `rules/project/` and `rules/global/`
+1. Copy required rules from `rules/global/`
 2. Keep references repo-relative for your target repository
 3. Add/update your orchestrator rule to point to local mirror paths
 4. Keep gate rules (`DoD`, `risk`, `api-contract`, `anti-hallucination`) enabled by default
