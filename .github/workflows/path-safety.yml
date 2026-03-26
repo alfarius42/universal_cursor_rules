@@ -1,0 +1,56 @@
+name: Path Safety Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  validate-path-safety:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fail on absolute local paths in rules
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          import sys
+
+          root = Path("rules")
+          files = sorted(root.rglob("*.mdc"))
+          if not files:
+            print("No .mdc files found under rules/")
+            sys.exit(0)
+
+          # Block only machine-specific absolute paths.
+          # URLs (https://...) are allowed and ignored.
+          patterns = [
+            re.compile(r"(?<![A-Za-z0-9+.-])([A-Za-z]:[\\/](?!/)[^\s`\"')\]]+)"),  # C:\... or D:/...
+            re.compile(r"(?<!https:)(?<!http:)(/Users/[^\s`\"')\]]+)"),
+            re.compile(r"(?<!https:)(?<!http:)(/home/[^\s`\"')\]]+)"),
+            re.compile(r"(%USERPROFILE%[\\/][^\s`\"')\]]+)"),
+          ]
+
+          violations = []
+          for file in files:
+            text = file.read_text(encoding="utf-8")
+            for i, line in enumerate(text.splitlines(), start=1):
+              for pat in patterns:
+                m = pat.search(line)
+                if m:
+                  violations.append((str(file), i, m.group(1)))
+                  break
+
+          if violations:
+            print("Path safety check failed: absolute machine-specific paths detected.\n")
+            for path, line, match in violations:
+              print(f"{path}:{line}: {match}")
+            print("\nUse repo-relative paths (e.g. ./rules/global/...).")
+            sys.exit(1)
+
+          print("Path safety check passed.")
+          PY
