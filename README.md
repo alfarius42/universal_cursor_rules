@@ -49,9 +49,9 @@
 
 ## What is included
 
-- `rules/global/*.mdc` - global reusable rules
-- `.github/workflows/path-safety.yml` - blocks machine-specific absolute paths
-- `.github/workflows/route-integrity.yml` - validates routing references in `task-intent-routing.mdc`
+- **`rules/global/*.mdc`** — глобальные переиспользуемые правила. При установке на свой компьютер **нужны только эти файлы** (см. [Installation](#installation)).
+
+- **`.github/workflows/`** — нужна **только для GitHub**: при push в этот репозиторий запускаются проверки качества правил. **На компьютер пользователя при установке Cursor это не копируют и не настраивают** — для работы агента значения не имеет.
 
 ## Installation
 
@@ -137,41 +137,12 @@ Start with:
 
 - откройте целевую папку в Проводнике / Finder и убедитесь, что там лежат те же `.mdc`, что и в `rules/global/` (например `cursor-orchestrator.mdc`, `task-intent-routing.mdc`).
 
-### CI fails on path safety check
-
-- remove machine-specific absolute paths (`C:\...`, `/Users/...`, Windows USERPROFILE-style paths)
-- replace with repo-relative references (for example `./rules/global/...`)
-
-### CI fails on route integrity check
-
-- open `rules/global/task-intent-routing.mdc`
-- ensure every referenced `.mdc` file exists in `rules/global/`
-- fix typo/rename mismatches and re-run CI
-
-### Broken/non-UTF8 text in rules
-
-- save files as UTF-8
-- avoid tooling that silently rewrites encoding during copy
-- re-copy from source and re-apply path normalization if needed
-
 ## Recommended rollout in a new team
 
 1. Enable orchestrator + routing first.
 2. Add DoD/risk/API gates.
 3. Add performance gate (`algorithm-complexity-selection.mdc`) for backend/data tasks.
 4. Review first 1-2 sprints and tune rule wording for your domain.
-
-## CI validation in this repository
-
-- **Path Safety Check**: fails on local machine absolute paths (`C:\...`, `/Users/...`, Windows USERPROFILE-style paths, etc.).
-- **Route Integrity Check**: fails when `task-intent-routing.mdc` references a missing `.mdc` rule.
-
-## Path policy (important)
-
-- use repo-relative paths where possible
-- avoid user-specific absolute paths
-- canonical complexity rule reference:
-  - `./rules/global/algorithm-complexity-selection.mdc`
 
 ## Limitations
 
@@ -188,4 +159,4 @@ Please keep changes:
 - portable across machines and OS
 - clear for external users (not only original authors)
 - free from secrets and private infrastructure references
-- compatible with CI checks in `.github/workflows/`
+- in `rules/global/*.mdc` — относительные пути к репозиторию (без абсолютных путей к вашей машине); при push сработают проверки из `.github/workflows/`
