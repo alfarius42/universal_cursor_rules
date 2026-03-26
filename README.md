@@ -41,7 +41,12 @@ This applies the rules to all your projects on the current machine.
 #### Windows (PowerShell)
 
 ```powershell
-git clone https://github.com/alfarius42/universal_ursor_rules "$env:USERPROFILE\universal_ursor_rules"
+$repoPath = "$env:USERPROFILE\universal_ursor_rules"
+if (Test-Path $repoPath) {
+  git -C $repoPath pull
+} else {
+  git clone https://github.com/alfarius42/universal_ursor_rules $repoPath
+}
 New-Item -ItemType Directory -Force "$env:USERPROFILE\.cursor\rules" | Out-Null
 Copy-Item "$env:USERPROFILE\universal_ursor_rules\rules\global\*.mdc" "$env:USERPROFILE\.cursor\rules\" -Force
 Get-ChildItem "$env:USERPROFILE\.cursor\rules" -Filter *.mdc | Select-Object -ExpandProperty Name
@@ -50,7 +55,12 @@ Get-ChildItem "$env:USERPROFILE\.cursor\rules" -Filter *.mdc | Select-Object -Ex
 #### macOS/Linux (bash/zsh)
 
 ```bash
-git clone https://github.com/alfarius42/universal_ursor_rules "$HOME/universal_ursor_rules"
+REPO_PATH="$HOME/universal_ursor_rules"
+if [ -d "$REPO_PATH/.git" ]; then
+  git -C "$REPO_PATH" pull
+else
+  git clone https://github.com/alfarius42/universal_ursor_rules "$REPO_PATH"
+fi
 mkdir -p "$HOME/.cursor/rules"
 cp "$HOME/universal_ursor_rules/rules/global/"*.mdc "$HOME/.cursor/rules/"
 ls -1 "$HOME/.cursor/rules/"*.mdc
