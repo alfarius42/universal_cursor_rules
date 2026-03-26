@@ -62,28 +62,28 @@ This applies the rules to all your projects on the current machine.
 #### Windows (PowerShell)
 
 ```powershell
-$repoPath = "$env:USERPROFILE\universal_ursor_rules"
+$repoPath = "$env:USERPROFILE\universal_cursor_rules"
 if (Test-Path $repoPath) {
   git -C $repoPath pull
 } else {
-  git clone https://github.com/alfarius42/universal_ursor_rules $repoPath
+  git clone https://github.com/alfarius42/universal_cursor_rules $repoPath
 }
 New-Item -ItemType Directory -Force "$env:USERPROFILE\.cursor\rules" | Out-Null
-Copy-Item "$env:USERPROFILE\universal_ursor_rules\rules\global\*.mdc" "$env:USERPROFILE\.cursor\rules\" -Force
+Copy-Item "$env:USERPROFILE\universal_cursor_rules\rules\global\*.mdc" "$env:USERPROFILE\.cursor\rules\" -Force
 Get-ChildItem "$env:USERPROFILE\.cursor\rules" -Filter *.mdc | Select-Object -ExpandProperty Name
 ```
 
 #### macOS/Linux (bash/zsh)
 
 ```bash
-REPO_PATH="$HOME/universal_ursor_rules"
+REPO_PATH="$HOME/universal_cursor_rules"
 if [ -d "$REPO_PATH/.git" ]; then
   git -C "$REPO_PATH" pull
 else
-  git clone https://github.com/alfarius42/universal_ursor_rules "$REPO_PATH"
+  git clone https://github.com/alfarius42/universal_cursor_rules "$REPO_PATH"
 fi
 mkdir -p "$HOME/.cursor/rules"
-cp "$HOME/universal_ursor_rules/rules/global/"*.mdc "$HOME/.cursor/rules/"
+cp "$HOME/universal_cursor_rules/rules/global/"*.mdc "$HOME/.cursor/rules/"
 ls -1 "$HOME/.cursor/rules/"*.mdc
 ```
 
@@ -97,7 +97,7 @@ Use this if you want rules only in one repository.
 
 ```powershell
 New-Item -ItemType Directory -Force ".cursor\rules" | Out-Null
-Copy-Item "$env:USERPROFILE\universal_ursor_rules\rules\global\*.mdc" ".cursor\rules\" -Force
+Copy-Item "$env:USERPROFILE\universal_cursor_rules\rules\global\*.mdc" ".cursor\rules\" -Force
 Get-ChildItem ".cursor\rules" -Filter *.mdc | Select-Object -ExpandProperty Name
 ```
 
@@ -105,7 +105,7 @@ Get-ChildItem ".cursor\rules" -Filter *.mdc | Select-Object -ExpandProperty Name
 
 ```bash
 mkdir -p .cursor/rules
-cp "$HOME/universal_ursor_rules/rules/global/"*.mdc .cursor/rules/
+cp "$HOME/universal_cursor_rules/rules/global/"*.mdc .cursor/rules/
 ls -1 .cursor/rules/*.mdc
 ```
 
@@ -137,7 +137,7 @@ Quick check:
 ### Update rules later
 
 ```bash
-# run in cloned universal_ursor_rules folder
+# run in cloned universal_cursor_rules folder
 git pull
 ```
 
