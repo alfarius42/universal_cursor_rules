@@ -1,37 +1,35 @@
-﻿---
-description: РџСЂР°РІРёР»Р° CI/CD вЂ” РІРµС‚РєРё, jobs, РґРµРїР»РѕР№, СЃРµРєСЂРµС‚С‹ (AI Tender Tool)
+---
+description: Правила CI/CD — ветки, jobs, деплой, секреты (AI Tender Tool)
 globs: .github/**/*.yml,.github/**/*.yaml
 alwaysApply: false
 ---
 
 # CI/CD (AI Tender Tool)
 
-РџСЂРѕРµРєС‚ вЂ” frontend РЅР° Vite (СЃР±РѕСЂРєР° РІ `build/`) Рё backend РЅР° Express/TypeScript (СЃР±РѕСЂРєР° РІ `backend/dist/`).
+Проект — frontend на Vite (сборка в `build/`) и backend на Express/TypeScript (сборка в `backend/dist/`).
 
-## РўСЂРёРіРіРµСЂС‹
+## Триггеры
 
-- **push main** вЂ” РїРѕР»РЅС‹Р№ РїР°Р№РїР»Р°Р№РЅ + РґРµРїР»РѕР№ РЅР° РїСЂРѕРґР°РєС€РЅ.
-- **push develop** вЂ” lint (РµСЃР»Рё РµСЃС‚СЊ), build Р±РµР· РґРµРїР»РѕСЏ.
-- **pull_request** РІ main/develop вЂ” РїСЂРѕРІРµСЂРєРё Р±РµР· РґРµРїР»РѕСЏ.
+- **push main** — полный пайплайн + деплой на продакшн.
+- **push develop** — lint (если есть), build без деплоя.
+- **pull_request** в main/develop — проверки без деплоя.
 
-## Jobs (РїРѕСЂСЏРґРѕРє)
+## Jobs (порядок)
 
-Р’ `.github/workflows/ci.yml`: РґРІР° РЅРµР·Р°РІРёСЃРёРјС‹С… job вЂ” **frontend** Рё **backend**.
+В `.github/workflows/ci.yml`: два независимых job — **frontend** и **backend**.
 
-- **frontend:** checkout, setup Node 20, `npm ci`, `npm run lint`, `npm run typecheck` (РІСЂРµРјРµРЅРЅРѕ continue-on-error), `npm run test`, `npm run build`. Р Р°Р±РѕС‡Р°СЏ РґРёСЂРµРєС‚РѕСЂРёСЏ вЂ” РєРѕСЂРµРЅСЊ.
-- **backend:** checkout, setup Node 20, `npm install` РІ `backend`, `npm run typecheck`, `npm run build`, `npm run test`. Р Р°Р±РѕС‡Р°СЏ РґРёСЂРµРєС‚РѕСЂРёСЏ вЂ” `backend`.
+- **frontend:** checkout, setup Node 20, `npm ci`, `npm run lint`, `npm run typecheck` (временно continue-on-error), `npm run test`, `npm run build`. Рабочая директория — корень.
+- **backend:** checkout, setup Node 20, `npm install` в `backend`, `npm run typecheck`, `npm run build`, `npm run test`. Рабочая директория — `backend`.
 
-Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅРѕ (РїСЂРё РЅР°СЃС‚СЂРѕР№РєРµ РґРµРїР»РѕСЏ): **deploy-production** вЂ” С‚РѕР»СЊРєРѕ РїСЂРё push РІ main; **health-check** вЂ” РѕРїС†РёРѕРЅР°Р»СЊРЅРѕ РїРѕСЃР»Рµ РґРµРїР»РѕСЏ.
+Дополнительно (при настройке деплоя): **deploy-production** — только при push в main; **health-check** — опционально после деплоя.
 
-## РЎРµРєСЂРµС‚С‹ (РЅРµ РІ РєРѕРґРµ)
+## Секреты (не в коде)
 
-- Р”РµРїР»РѕР№: SSH_PRIVATE_KEY, REMOTE_HOST, REMOTE_USER, REMOTE_PORT, FRONTEND_REMOTE_PATH. РР»Рё FTP: FTP_HOST, FTP_USERNAME, FTP_PASSWORD, FTP_FRONTEND_PATH.
-- РЎР±РѕСЂРєР°: VITE_* РїРѕ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё.
-- PRODUCTION_URL РґР»СЏ health-check.
+- Деплой: SSH_PRIVATE_KEY, REMOTE_HOST, REMOTE_USER, REMOTE_PORT, FRONTEND_REMOTE_PATH. Или FTP: FTP_HOST, FTP_USERNAME, FTP_PASSWORD, FTP_FRONTEND_PATH.
+- Сборка: VITE_* по необходимости.
+- PRODUCTION_URL для health-check.
 
-## Р РµРєРѕРјРµРЅРґР°С†РёРё
+## Рекомендации
 
-- РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ `actions/checkout@v4`, `actions/setup-node@v4` СЃ `cache: 'npm'`.
-- РђСЂС‚РµС„Р°РєС‚С‹: retention-days 7; РїСЂРё РѕС‚СЃСѓС‚СЃС‚РІРёРё С„Р°Р№Р»РѕРІ вЂ” `if-no-files-found: ignore`.
-
-
+- Использовать `actions/checkout@v4`, `actions/setup-node@v4` с `cache: 'npm'`.
+- Артефакты: retention-days 7; при отсутствии файлов — `if-no-files-found: ignore`.

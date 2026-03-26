@@ -1,95 +1,95 @@
-﻿---
-description: РћСЂРєРµСЃС‚СЂР°С‚РѕСЂ Cursor вЂ” РїРѕСЂСЏРґРѕРє РѕР±СЂР°С‰РµРЅРёСЏ Рє РїСЂР°РІРёР»Р°Рј Рё skills РґР»СЏ AI Tender Tool.
+---
+description: Оркестратор Cursor — порядок обращения к правилам и skills для AI Tender Tool.
 alwaysApply: true
 ---
 
-# РћСЂРєРµСЃС‚СЂР°С‚РѕСЂ РїСЂР°РІРёР» Рё skills (AI Tender Tool)
+# Оркестратор правил и skills (AI Tender Tool)
 
-**РќР°Р·РЅР°С‡РµРЅРёРµ:** СѓРјРµРЅСЊС€РёС‚СЊ С€СѓРј РїСЂРё Р±РѕР»СЊС€РѕРј С‡РёСЃР»Рµ РїСЂР°РІРёР» Рё skills. РЎРЅР°С‡Р°Р»Р° РєР»Р°СЃСЃРёС„РёС†РёСЂРѕРІР°С‚СЊ Р·Р°РґР°С‡Сѓ, Р·Р°С‚РµРј РѕС‚РєСЂС‹РІР°С‚СЊ С‚РѕР»СЊРєРѕ СѓР·РєРёР№ РЅР°Р±РѕСЂ СЂРµР»РµРІР°РЅС‚РЅС‹С… С„Р°Р№Р»РѕРІ.
+**Назначение:** уменьшить шум при большом числе правил и skills. Сначала классифицировать задачу, затем открывать только узкий набор релевантных файлов.
 
-## 1. РџРѕСЂСЏРґРѕРє СЂР°Р±РѕС‚С‹ (РјР°СЂС€СЂСѓС‚ РїРѕ С‚РёРїСѓ Р·Р°РґР°С‡Рё)
+## 1. Порядок работы (маршрут по типу задачи)
 
-| Р­С‚Р°Рї | РљСѓРґР° |
+| Этап | Куда |
 |------|------|
-| РЎС‚Р°СЂС‚ Р»СЋР±РѕР№ Р·Р°РґР°С‡Рё РїРѕ РїСЂРѕРґСѓРєС‚Сѓ/РєРѕРґСѓ | `docs/active/DOCUMENTATION_INDEX.md` -> РґР°Р»РµРµ РїРѕ `token-economy.mdc` |
-| Р›СЋР±Р°СЏ С„РёС‡Р°/РёР·РјРµРЅРµРЅРёРµ РїРѕРІРµРґРµРЅРёСЏ | `documentation-first.mdc` -> `src/РџРѕР»РЅР°СЏ СЃРїРµС†РёС„РёРєР°С†РёСЏ РїСЂРѕРґСѓРєС‚Р° - РѕСЃРЅРѕРІРЅРѕР№ РґРѕРєСѓРјРµРЅС‚.md` (`primary-source.mdc`) |
-| РђСЂС…РёС‚РµРєС‚СѓСЂР° Рё РіСЂР°РЅРёС†С‹ РјРѕРґСѓР»РµР№ | `documentation-index-first.mdc` + `src/ARCHITECTURE.md` + `tech-stack.mdc` |
-| РљР»Р°СЃСЃРёС„РёРєР°С†РёСЏ Р·Р°РґР°С‡Рё Рё РІС‹Р±РѕСЂ РјР°СЂС€СЂСѓС‚Р° | `task-intent-routing.mdc` |
-| РџР»Р°РЅРёСЂРѕРІР°РЅРёРµ Рё Р°СЂС…РёС‚РµРєС‚СѓСЂРЅС‹Рµ СЂРµС€РµРЅРёСЏ | `architecture-planning-gate.mdc` + `src/ARCHITECTURE.md` + `docs/active/DEVELOPER_MAINTENANCE_GUIDE.md` |
-| РўРёРїРѕРІС‹Рµ СЃС†РµРЅР°СЂРёРё СЂРµР°Р»РёР·Р°С†РёРё | `project-playbooks.mdc` + `docs/active/AI_AGENT_PLAYBOOKS.md` |
-| Р›РѕРєР°Р»РёР·Р°С†РёСЏ UI (RU/EN) | `i18n-bilingual-features.mdc` + `docs/active/I18N_RU_EN_GUIDE.md` |
-| РџСЂРѕРІРµСЂРєР° РєР°С‡РµСЃС‚РІР° РїРѕСЃР»Рµ РїСЂР°РІРѕРє РєРѕРґР° | `testing-and-testcases.mdc` -> `lint-scoped-checks.mdc` -> `ci-cd.mdc` |
-| DoD Рё С„РѕСЂРјР°С‚ С„РёРЅР°Р»СЊРЅРѕРіРѕ РѕС‚РІРµС‚Р° | `definition-of-done-gates.mdc` |
-| РџСЂРѕРІРµСЂРєР° С„Р°РєС‚РѕРІ Рё Р·Р°РїСЂРµС‚ РІС‹РґСѓРјРѕРє | `anti-hallucination-verification.mdc` |
-| Р РёСЃРє-РѕС†РµРЅРєР° Рё РіР»СѓР±РёРЅР° СЂРµРІСЊСЋ | `risk-scoring-and-review-depth.mdc` |
-| РЎРµРєСЂРµС‚С‹ Рё env | `secrets-and-env.mdc` |
-| Р‘Р”-РјРёРіСЂР°С†РёРё | `migrations-doc-and-notify.mdc` |
-| API-РєРѕРЅС‚СЂР°РєС‚С‹ Рё tenant-safe РёР·РјРµРЅРµРЅРёСЏ | `api-contract-gate.mdc` + `docs/active/API_TENANT_CHECKLIST.md` |
-| Dev-СЃРµСЂРІРµСЂС‹ Рё РїРѕСЂС‚С‹ | `dev-server-no-background.mdc` |
-| Git Рё РїСЂРѕС†РµСЃСЃ РєРѕРјРјРёС‚РѕРІ | `git-workflow.mdc`, `project-conventions.mdc` |
-| РџРѕРґР±РѕСЂ РІРЅРµС€РЅРµРіРѕ skill | `skill-discovery-from-awesome-agent-skills.mdc` |
-| Backend-РїСЂР°РєС‚РёРєРё | `backend-best-practices.mdc` |
-| Frontend React-РїСЂР°РєС‚РёРєРё | `frontend-react-best-practices.mdc` |
-| Р”РѕРєСѓРјРµРЅС‚Р°С†РёСЏ СЂСѓС‡РЅРѕРіРѕ/E2E С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ | `e2e-testcases-doc.mdc` |
-| РЎС‚РёР»СЊ РєРѕРјРјСѓРЅРёРєР°С†РёРё Рё РїРѕСЂСЏРґРѕРє РїСЂРѕС†РµСЃСЃР° | `communication-and-process.mdc` |
-| РРЅС‚РµРіСЂР°С†РёСЏ РЎР‘РРЎ РўРѕСЂРіРё | `sbis-tender-api-skill.mdc` + `.cursor/skills/sbis-tender-api-integration/SKILL.md` |
-| РРЅС‚РµРіСЂР°С†РёСЏ Р®Kassa | `.cursor/skills/yookassa-integration/SKILL.md` |
-| РРЅС‚РµРіСЂР°С†РёСЏ Replicate | `.cursor/skills/replicate-cursor-integration/SKILL.md` |
-| Р’С‹Р±РѕСЂ Р°Р»РіРѕСЂРёС‚РјР°/СЃС‚СЂСѓРєС‚СѓСЂС‹ РґР°РЅРЅС‹С…/РёРЅРґРµРєСЃРѕРІ | **РіР»РѕР±Р°Р»СЊРЅРѕРµ РїСЂР°РІРёР»Рѕ:** `./rules/global/algorithm-complexity-selection.mdc` |
+| Старт любой задачи по продукту/коду | `docs/active/DOCUMENTATION_INDEX.md` -> далее по `token-economy.mdc` |
+| Любая фича/изменение поведения | `documentation-first.mdc` -> `src/Полная спецификация продукта - основной документ.md` (`primary-source.mdc`) |
+| Архитектура и границы модулей | `documentation-index-first.mdc` + `src/ARCHITECTURE.md` + `tech-stack.mdc` |
+| Классификация задачи и выбор маршрута | `task-intent-routing.mdc` |
+| Планирование и архитектурные решения | `architecture-planning-gate.mdc` + `src/ARCHITECTURE.md` + `docs/active/DEVELOPER_MAINTENANCE_GUIDE.md` |
+| Типовые сценарии реализации | `project-playbooks.mdc` + `docs/active/AI_AGENT_PLAYBOOKS.md` |
+| Локализация UI (RU/EN) | `i18n-bilingual-features.mdc` + `docs/active/I18N_RU_EN_GUIDE.md` |
+| Проверка качества после правок кода | `testing-and-testcases.mdc` -> `lint-scoped-checks.mdc` -> `ci-cd.mdc` |
+| DoD и формат финального ответа | `definition-of-done-gates.mdc` |
+| Проверка фактов и запрет выдумок | `anti-hallucination-verification.mdc` |
+| Риск-оценка и глубина ревью | `risk-scoring-and-review-depth.mdc` |
+| Секреты и env | `secrets-and-env.mdc` |
+| БД-миграции | `migrations-doc-and-notify.mdc` |
+| API-контракты и tenant-safe изменения | `api-contract-gate.mdc` + `docs/active/API_TENANT_CHECKLIST.md` |
+| Dev-серверы и порты | `dev-server-no-background.mdc` |
+| Git и процесс коммитов | `git-workflow.mdc`, `project-conventions.mdc` |
+| Подбор внешнего skill | `skill-discovery-from-awesome-agent-skills.mdc` |
+| Backend-практики | `backend-best-practices.mdc` |
+| Frontend React-практики | `frontend-react-best-practices.mdc` |
+| Документация ручного/E2E тестирования | `e2e-testcases-doc.mdc` |
+| Стиль коммуникации и порядок процесса | `communication-and-process.mdc` |
+| Интеграция СБИС Торги | `sbis-tender-api-skill.mdc` + `.cursor/skills/sbis-tender-api-integration/SKILL.md` |
+| Интеграция ЮKassa | `.cursor/skills/yookassa-integration/SKILL.md` |
+| Интеграция Replicate | `.cursor/skills/replicate-cursor-integration/SKILL.md` |
+| Выбор алгоритма/структуры данных/индексов | **глобальное правило:** `./rules/global/algorithm-complexity-selection.mdc` |
 
-## 2. РРЅРґРµРєСЃ РїСЂР°РІРёР» РїСЂРѕРµРєС‚Р° (`.cursor/rules/`)
+## 2. Индекс правил проекта (`.cursor/rules/`)
 
-**Р”РѕРєСѓРјРµРЅС‚Р°С†РёСЏ Рё РєРѕРЅС‚РµРєСЃС‚:** `documentation-index-first.mdc`, `documentation-first.mdc`, `token-economy.mdc`, `primary-source.mdc`, `developer-maintenance-doc.mdc`
+**Документация и контекст:** `documentation-index-first.mdc`, `documentation-first.mdc`, `token-economy.mdc`, `primary-source.mdc`, `developer-maintenance-doc.mdc`
 
-**РљР°С‡РµСЃС‚РІРѕ Рё С‚РµСЃС‚С‹:** `testing-and-testcases.mdc`, `e2e-testcases-doc.mdc`, `lint-scoped-checks.mdc`, `ci-cd.mdc`, `code-cleanliness.mdc`, `definition-of-done-gates.mdc`
+**Качество и тесты:** `testing-and-testcases.mdc`, `e2e-testcases-doc.mdc`, `lint-scoped-checks.mdc`, `ci-cd.mdc`, `code-cleanliness.mdc`, `definition-of-done-gates.mdc`
 
-**Р‘РµР·РѕРїР°СЃРЅРѕСЃС‚СЊ Рё РѕРєСЂСѓР¶РµРЅРёРµ:** `secrets-and-env.mdc`, `migrations-doc-and-notify.mdc`, `dev-server-no-background.mdc`, `anti-hallucination-verification.mdc`, `api-contract-gate.mdc`
+**Безопасность и окружение:** `secrets-and-env.mdc`, `migrations-doc-and-notify.mdc`, `dev-server-no-background.mdc`, `anti-hallucination-verification.mdc`, `api-contract-gate.mdc`
 
-**РџСЂРѕС†РµСЃСЃ Рё Git:** `git-workflow.mdc`, `project-conventions.mdc`, `communication-and-process.mdc`, `task-intent-routing.mdc`, `risk-scoring-and-review-depth.mdc`, `project-playbooks.mdc`, `architecture-planning-gate.mdc`
+**Процесс и Git:** `git-workflow.mdc`, `project-conventions.mdc`, `communication-and-process.mdc`, `task-intent-routing.mdc`, `risk-scoring-and-review-depth.mdc`, `project-playbooks.mdc`, `architecture-planning-gate.mdc`
 
-**РЎС‚РµРє Рё РїР»Р°С‚С„РѕСЂРјР°:** `tech-stack.mdc`, `backend-best-practices.mdc`, `frontend-react-best-practices.mdc`, `i18n-bilingual-features.mdc`, `sbis-tender-api-skill.mdc`
+**Стек и платформа:** `tech-stack.mdc`, `backend-best-practices.mdc`, `frontend-react-best-practices.mdc`, `i18n-bilingual-features.mdc`, `sbis-tender-api-skill.mdc`
 
-*РџСЂРё РґРѕР±Р°РІР»РµРЅРёРё РЅРѕРІРѕРіРѕ РїСЂР°РІРёР»Р° РІ `.cursor/rules/` РґРѕР±Р°РІР»СЏС‚СЊ РµРіРѕ РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰СѓСЋ РіСЂСѓРїРїСѓ СЌС‚РѕРіРѕ СЂР°Р·РґРµР»Р°.*
+*При добавлении нового правила в `.cursor/rules/` добавлять его в соответствующую группу этого раздела.*
 
-## 3. РРЅРґРµРєСЃ РїСЂРѕРµРєС‚РЅС‹С… skills (`.cursor/skills/<id>/SKILL.md`)
+## 3. Индекс проектных skills (`.cursor/skills/<id>/SKILL.md`)
 
-| РћР±Р»Р°СЃС‚СЊ | Skill (РїР°РїРєР°) |
+| Область | Skill (папка) |
 |---------|----------------|
-| РЎР‘РРЎ РўРѕСЂРіРё API | `sbis-tender-api-integration` |
-| Р®Kassa | `yookassa-integration` |
+| СБИС Торги API | `sbis-tender-api-integration` |
+| ЮKassa | `yookassa-integration` |
 | Replicate | `replicate-cursor-integration` |
 
-**РџСЂРѕРІРµСЂРєР° СЃРѕСЃС‚Р°РІР° skills (PowerShell):** `Get-ChildItem .cursor\skills -Directory | Sort-Object Name`
+**Проверка состава skills (PowerShell):** `Get-ChildItem .cursor\skills -Directory | Sort-Object Name`
 
-## 4. Р“Р»РѕР±Р°Р»СЊРЅС‹Рµ РёСЃС‚РѕС‡РЅРёРєРё (РІРЅРµ СЂРµРїРѕР·РёС‚РѕСЂРёСЏ)
+## 4. Глобальные источники (вне репозитория)
 
-| РСЃС‚РѕС‡РЅРёРє | РќР°Р·РЅР°С‡РµРЅРёРµ |
+| Источник | Назначение |
 |----------|------------|
-| User Rules Cursor | РџРµСЂСЃРѕРЅР°Р»СЊРЅС‹Рµ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рµ РёРЅСЃС‚СЂСѓРєС†РёРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ |
-| `~/.cursor/skills/` | РћР±С‰РёРµ Р»РѕРєР°Р»СЊРЅС‹Рµ skills РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ |
-| MCP-РєРѕРЅС„РёРіРё Рё РґРµСЃРєСЂРёРїС‚РѕСЂС‹ tools | РРЅСЃС‚СЂСѓРєС†РёРё РїРѕ MCP РІ С‚РµРєСѓС‰РµР№ СЃРµСЃСЃРёРё |
-| `./rules/global/algorithm-complexity-selection.mdc` | Р“Р»РѕР±Р°Р»СЊРЅРѕРµ РїСЂР°РІРёР»Рѕ РІС‹Р±РѕСЂР° Р°Р»РіРѕСЂРёС‚РјРѕРІ РїРѕ СЃР»РѕР¶РЅРѕСЃС‚Рё Рё СЌРєСЃРїР»СѓР°С‚Р°С†РёРѕРЅРЅРѕР№ СЌС„С„РµРєС‚РёРІРЅРѕСЃС‚Рё |
+| User Rules Cursor | Персональные обязательные инструкции пользователя |
+| `~/.cursor/skills/` | Общие локальные skills пользователя |
+| MCP-конфиги и дескрипторы tools | Инструкции по MCP в текущей сессии |
+| `./rules/global/algorithm-complexity-selection.mdc` | Глобальное правило выбора алгоритмов по сложности и эксплуатационной эффективности |
 
-### 4.1 РљРѕРіРґР° СЏРІРЅРѕ РѕР±СЂР°С‰Р°С‚СЊСЃСЏ Рє `algorithm-complexity-selection.mdc`
+### 4.1 Когда явно обращаться к `algorithm-complexity-selection.mdc`
 
-РћР±СЂР°С‰Р°С‚СЊСЃСЏ Рє РїСЂР°РІРёР»Сѓ **РґРѕ РІС‹Р±РѕСЂР° СЂРµР°Р»РёР·Р°С†РёРё** РІ СЃР»РµРґСѓСЋС‰РёС… СЃР»СѓС‡Р°СЏС…:
+Обращаться к правилу **до выбора реализации** в следующих случаях:
 
-- Р•СЃС‚СЊ РІС‹Р±РѕСЂ РјРµР¶РґСѓ 2+ Р°Р»РіРѕСЂРёС‚РјР°РјРё/СЃС‚СЂСѓРєС‚СѓСЂР°РјРё РґР°РЅРЅС‹С… РґР»СЏ РѕРґРЅРѕР№ Р·Р°РґР°С‡Рё.
-- РРґС‘С‚ СЂРµС„Р°РєС‚РѕСЂРёРЅРі СѓС‡Р°СЃС‚РєР° СЃ СЂРёСЃРєРѕРј РґРµРіСЂР°РґР°С†РёРё (`nested loops`, РјРЅРѕР¶РµСЃС‚РІРµРЅРЅС‹Рµ РїСЂРѕС…РѕРґС‹, С‚СЏР¶РµР»С‹Рµ РІС‹Р±РѕСЂРєРё/join/range).
-- РџСЂРѕРµРєС‚РёСЂСѓСЋС‚СЃСЏ РёР»Рё РјРµРЅСЏСЋС‚СЃСЏ РёРЅРґРµРєСЃС‹ Р‘Р”, СЂРµС€Р°РµС‚СЃСЏ РІС‹Р±РѕСЂ РјРµР¶РґСѓ РёРЅРґРµРєСЃРѕРј, РєСЌС€РµРј Рё Р»РёРЅРµР№РЅС‹Рј РїСЂРѕС…РѕРґРѕРј.
-- Р•СЃС‚СЊ Р¶Р°Р»РѕР±С‹ РЅР° РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊРЅРѕСЃС‚СЊ РёР»Рё РѕРїС‚РёРјРёР·РёСЂСѓРµС‚СЃСЏ hot path.
-- РџСЂРµРґР»Р°РіР°РµС‚СЃСЏ СЂРµС€РµРЅРёРµ СЃ РїРѕС‚РµРЅС†РёР°Р»СЊРЅРѕ РІС‹СЃРѕРєРѕР№ СЃР»РѕР¶РЅРѕСЃС‚СЊСЋ (`O(n^2)+`, `O(2^n)`, `O(n!)`).
+- Есть выбор между 2+ алгоритмами/структурами данных для одной задачи.
+- Идёт рефакторинг участка с риском деградации (`nested loops`, множественные проходы, тяжелые выборки/join/range).
+- Проектируются или меняются индексы БД, решается выбор между индексом, кэшем и линейным проходом.
+- Есть жалобы на производительность или оптимизируется hot path.
+- Предлагается решение с потенциально высокой сложностью (`O(n^2)+`, `O(2^n)`, `O(n!)`).
 
-Р§С‚Рѕ С„РёРєСЃРёСЂРѕРІР°С‚СЊ РїРѕ СЂРµР·СѓР»СЊС‚Р°С‚Сѓ РїСЂРёРјРµРЅРµРЅРёСЏ РїСЂР°РІРёР»Р°:
+Что фиксировать по результату применения правила:
 
-- РїСЂРѕС„РёР»СЊ РЅР°РіСЂСѓР·РєРё (`n`, read-heavy/write-heavy, online/batch);
-- РјРёРЅРёРјСѓРј 2 Р°Р»СЊС‚РµСЂРЅР°С‚РёРІС‹ (time average/worst + memory);
-- РєР»СЋС‡РµРІС‹Рµ trade-offs (РІРєР»СЋС‡Р°СЏ СЃС‚РѕРёРјРѕСЃС‚СЊ РѕР±РЅРѕРІР»РµРЅРёР№/РїРѕРґРґРµСЂР¶РєРё РёРЅРґРµРєСЃРѕРІ);
-- evidence: С‡С‚Рѕ СѓР¶Рµ РёР·РјРµСЂРµРЅРѕ РёР»Рё С‡С‚Рѕ РЅСѓР¶РЅРѕ РёР·РјРµСЂРёС‚СЊ (`benchmark`, `profiling`, `EXPLAIN`, latency/throughput РјРµС‚СЂРёРєРё).
+- профиль нагрузки (`n`, read-heavy/write-heavy, online/batch);
+- минимум 2 альтернативы (time average/worst + memory);
+- ключевые trade-offs (включая стоимость обновлений/поддержки индексов);
+- evidence: что уже измерено или что нужно измерить (`benchmark`, `profiling`, `EXPLAIN`, latency/throughput метрики).
 
-### 4.2 Р–С‘СЃС‚РєРёР№ gate РґР»СЏ Р·Р°РґР°С‡ РїРѕ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊРЅРѕСЃС‚Рё (strict mode)
+### 4.2 Жёсткий gate для задач по производительности (strict mode)
 
-Р•СЃР»Рё Р·Р°РґР°С‡Р° РїРѕРјРµС‡РµРЅР° РєР°Рє РѕРґРЅР° РёР· РєР°С‚РµРіРѕСЂРёР№:
+Если задача помечена как одна из категорий:
 
 - `algorithm_change`
 - `data_structure_change`
@@ -97,44 +97,42 @@ alwaysApply: true
 - `performance_issue`
 - `hot_path`
 
-С‚Рѕ РІРєР»СЋС‡Р°РµС‚СЃСЏ **strict gate**: С„РёРЅР°Р»СЊРЅС‹Р№ РѕС‚РІРµС‚ РЅРµР»СЊР·СЏ РѕС‚РґР°РІР°С‚СЊ, РїРѕРєР° РЅРµ РІС‹РїРѕР»РЅРµРЅС‹ РІСЃРµ РїСЂРѕРІРµСЂРєРё.
+то включается **strict gate**: финальный ответ нельзя отдавать, пока не выполнены все проверки.
 
-**РћР±СЏР·Р°С‚РµР»СЊРЅС‹Р№ С‡РµРєР»РёСЃС‚ strict gate:**
+**Обязательный чеклист strict gate:**
 
-- РЈРєР°Р·Р°РЅ РєРѕРЅС‚РµРєСЃС‚ РЅР°РіСЂСѓР·РєРё: РѕР¶РёРґР°РµРјС‹Р№ `n`, РїСЂРѕС„РёР»СЊ `read/write`, СЂРµР¶РёРј `online/batch`, РѕРіСЂР°РЅРёС‡РµРЅРёСЏ `latency/throughput/memory`.
-- РЎСЂР°РІРЅРµРЅС‹ РјРёРЅРёРјСѓРј 2 СЂРµР°Р»РёСЃС‚РёС‡РЅС‹Рµ Р°Р»СЊС‚РµСЂРЅР°С‚РёРІС‹.
-- Р”Р»СЏ РєР°Р¶РґРѕР№ Р°Р»СЊС‚РµСЂРЅР°С‚РёРІС‹ РµСЃС‚СЊ `average` Рё `worst-case` РїРѕ РІСЂРµРјРµРЅРё Рё РѕС†РµРЅРєР° РїР°РјСЏС‚Рё.
-- РЇРІРЅРѕ РѕРїРёСЃР°РЅС‹ trade-offs (РІРєР»СЋС‡Р°СЏ СЃС‚РѕРёРјРѕСЃС‚СЊ РѕР±РЅРѕРІР»РµРЅРёР№/РїРѕРґРґРµСЂР¶РєРё РёРЅРґРµРєСЃРѕРІ).
-- Р”Р»СЏ СЃРїРѕСЂРЅРѕРіРѕ РІС‹Р±РѕСЂР° РµСЃС‚СЊ evidence-РїР»Р°РЅ РёР»Рё СЂРµР·СѓР»СЊС‚Р°С‚С‹ РёР·РјРµСЂРµРЅРёР№ (`benchmark`, `profiling`, `EXPLAIN`, p50/p95/p99, throughput, memory).
-- Р”Р»СЏ СЂРµС€РµРЅРёР№ `O(n^2)+`, `O(2^n)`, `O(n!)` РµСЃС‚СЊ С‡С‘С‚РєРёРµ РіСЂР°РЅРёС†С‹ РїСЂРёРјРµРЅРёРјРѕСЃС‚Рё Рё РѕР±РѕСЃРЅРѕРІР°РЅРёРµ.
+- Указан контекст нагрузки: ожидаемый `n`, профиль `read/write`, режим `online/batch`, ограничения `latency/throughput/memory`.
+- Сравнены минимум 2 реалистичные альтернативы.
+- Для каждой альтернативы есть `average` и `worst-case` по времени и оценка памяти.
+- Явно описаны trade-offs (включая стоимость обновлений/поддержки индексов).
+- Для спорного выбора есть evidence-план или результаты измерений (`benchmark`, `profiling`, `EXPLAIN`, p50/p95/p99, throughput, memory).
+- Для решений `O(n^2)+`, `O(2^n)`, `O(n!)` есть чёткие границы применимости и обоснование.
 
-**Р‘Р»РѕРєРёСЂСѓСЋС‰РёРµ СѓСЃР»РѕРІРёСЏ (РѕС‚РІРµС‚ РѕС‚РєР»РѕРЅСЏРµС‚СЃСЏ Рё РґРѕСЂР°Р±Р°С‚С‹РІР°РµС‚СЃСЏ):**
+**Блокирующие условия (ответ отклоняется и дорабатывается):**
 
-- РќРµС‚ `worst-case` РѕС†РµРЅРєРё.
-- РќРµС‚ СЃСЂР°РІРЅРµРЅРёСЏ Р°Р»СЊС‚РµСЂРЅР°С‚РёРІ.
-- Р•СЃС‚СЊ СЃРёР»СЊРЅС‹Рµ СѓС‚РІРµСЂР¶РґРµРЅРёСЏ Рѕ РїСЂРѕРёР·РІРѕРґРёС‚РµР»СЊРЅРѕСЃС‚Рё Р±РµР· РјРµС‚СЂРёРє/РїР»Р°РЅР° РёР·РјРµСЂРµРЅРёР№.
-- РџСЂРµРґР»РѕР¶РµРЅРѕ РїРѕС‚РµРЅС†РёР°Р»СЊРЅРѕ РґРѕСЂРѕРіРѕРµ СЂРµС€РµРЅРёРµ Р±РµР· РѕРіСЂР°РЅРёС‡РµРЅРёР№ РїРѕ `n` Рё РїСЂРѕС„РёР»СЋ РЅР°РіСЂСѓР·РєРё.
+- Нет `worst-case` оценки.
+- Нет сравнения альтернатив.
+- Есть сильные утверждения о производительности без метрик/плана измерений.
+- Предложено потенциально дорогое решение без ограничений по `n` и профилю нагрузки.
 
-**Р¤РѕСЂРјР°С‚ С„РёРєСЃР°С†РёРё СЂРµС€РµРЅРёСЏ (РѕР±СЏР·Р°С‚РµР»РµРЅ РІ С„РёРЅР°Р»Рµ):**
+**Формат фиксации решения (обязателен в финале):**
 
-- `Р’С‹Р±СЂР°РЅРЅС‹Р№ РІР°СЂРёР°РЅС‚`
-- `РџРѕС‡РµРјСѓ РїРѕРґС…РѕРґРёС‚ РїРѕРґ С‚РµРєСѓС‰РёР№ РїСЂРѕС„РёР»СЊ`
-- `РљР»СЋС‡РµРІС‹Рµ trade-offs`
-- `РљР°РєРёРµ РјРµС‚СЂРёРєРё РїРѕРґС‚РІРµСЂР¶РґР°СЋС‚` (РёР»Рё `РєР°РєРёРµ РЅСѓР¶РЅРѕ СЃРЅСЏС‚СЊ`)
+- `Выбранный вариант`
+- `Почему подходит под текущий профиль`
+- `Ключевые trade-offs`
+- `Какие метрики подтверждают` (или `какие нужно снять`)
 
-**Р РµР¶РёРјС‹ РїСЂРёРјРµРЅРµРЅРёСЏ:**
+**Режимы применения:**
 
-- **strict**: РІРєР»СЋС‡Р°С‚СЊ РґР»СЏ backend, SQL, API hot path, batch/ETL, РїРѕРёСЃРєРѕРІС‹С…/Р°РЅР°Р»РёС‚РёС‡РµСЃРєРёС… Р·Р°РґР°С‡.
-- **light**: РґР»СЏ Р»РѕРєР°Р»СЊРЅС‹С… UI-РїСЂР°РІРѕРє Р±РµР· РІР»РёСЏРЅРёСЏ РЅР° Р°Р»РіРѕСЂРёС‚РјС‹ Рё РЅР°РіСЂСѓР·РєСѓ (РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РєСЂР°С‚РєРѕР№ РїСЂРѕРІРµСЂРєРё Р±РµР· РїРѕР»РЅРѕР№ С‚Р°Р±Р»РёС†С‹ Р°Р»СЊС‚РµСЂРЅР°С‚РёРІ).
+- **strict**: включать для backend, SQL, API hot path, batch/ETL, поисковых/аналитических задач.
+- **light**: для локальных UI-правок без влияния на алгоритмы и нагрузку (достаточно краткой проверки без полной таблицы альтернатив).
 
-### 4.3 РљР°Рє РїСЂРѕРІРµСЂРёС‚СЊ, С‡С‚Рѕ `algorithm-complexity-selection.mdc` РґРµР№СЃС‚РІРёС‚РµР»СЊРЅРѕ РїСЂРёРјРµРЅС‘РЅ
+### 4.3 Как проверить, что `algorithm-complexity-selection.mdc` действительно применён
 
-- Р¤Р°Р№Р» РїСЂР°РІРёР»Р° РґРѕСЃС‚СѓРїРµРЅ РїРѕ РїСѓС‚Рё `./rules/global/algorithm-complexity-selection.mdc` Рё С‡РёС‚Р°РµС‚СЃСЏ Р±РµР· РѕС€РёР±РѕРє.
-- Р’ СЂР°Р±РѕС‡РµРј СЂРµС€РµРЅРёРё СЏРІРЅРѕ РµСЃС‚СЊ:
-  - РѕС†РµРЅРєР° `n` Рё РїСЂРѕС„РёР»СЏ РЅР°РіСЂСѓР·РєРё;
-  - РјРёРЅРёРјСѓРј 2 Р°Р»СЊС‚РµСЂРЅР°С‚РёРІС‹;
-  - `worst-case` РѕС†РµРЅРєР°;
-  - evidence-С‡Р°СЃС‚СЊ (РёР·РјРµСЂРµРЅРёСЏ РёР»Рё РїР»Р°РЅ РёР·РјРµСЂРµРЅРёР№).
-- РџСЂРё РѕС‚СЃСѓС‚СЃС‚РІРёРё СЌС‚РёС… РїСѓРЅРєС‚РѕРІ РґР»СЏ performance-Р·Р°РґР°С‡ РѕС‚РІРµС‚ СЃС‡РёС‚Р°РµС‚СЃСЏ РЅРµРїРѕР»РЅС‹Рј Рё РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РґРѕСЂР°Р±РѕС‚Р°РЅ.
-
-
+- Файл правила доступен по пути `./rules/global/algorithm-complexity-selection.mdc` и читается без ошибок.
+- В рабочем решении явно есть:
+  - оценка `n` и профиля нагрузки;
+  - минимум 2 альтернативы;
+  - `worst-case` оценка;
+  - evidence-часть (измерения или план измерений).
+- При отсутствии этих пунктов для performance-задач ответ считается неполным и должен быть доработан.

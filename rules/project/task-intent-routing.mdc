@@ -1,15 +1,15 @@
-﻿---
-description: РљР»Р°СЃСЃРёС„РёРєР°С†РёСЏ РёРЅС‚РµРЅС‚Р° Р·Р°РґР°С‡Рё Рё РІС‹Р±РѕСЂ СѓР·РєРѕРіРѕ РЅР°Р±РѕСЂР° РїСЂР°РІРёР»/РґРѕРєСѓРјРµРЅС‚РѕРІ РїРµСЂРµРґ РЅР°С‡Р°Р»РѕРј СЂР°Р±РѕС‚С‹
+---
+description: Классификация интента задачи и выбор узкого набора правил/документов перед началом работы
 alwaysApply: true
 ---
 
 # Task Intent Routing
 
-Р¦РµР»СЊ: РґРѕ РЅР°С‡Р°Р»Р° СЂРµР°Р»РёР·Р°С†РёРё РѕРїСЂРµРґРµР»РёС‚СЊ С‚РёРї Р·Р°РґР°С‡Рё Рё РїРѕРґРєР»СЋС‡РёС‚СЊ С‚РѕР»СЊРєРѕ СЂРµР»РµРІР°РЅС‚РЅС‹Рµ РїСЂР°РІРёР»Р°.
+Цель: до начала реализации определить тип задачи и подключить только релевантные правила.
 
-## 1) РћР±СЏР·Р°С‚РµР»СЊРЅР°СЏ РєР»Р°СЃСЃРёС„РёРєР°С†РёСЏ
+## 1) Обязательная классификация
 
-РџРµСЂРµРґ Р»СЋР±С‹РјРё РїСЂР°РІРєР°РјРё РІС‹Р±СЂР°С‚СЊ РѕРґРёРЅ РїРµСЂРІРёС‡РЅС‹Р№ РёРЅС‚РµРЅС‚:
+Перед любыми правками выбрать один первичный интент:
 
 - `planning`
 - `architecture`
@@ -22,9 +22,9 @@ alwaysApply: true
 - `docs`
 - `infra/ci`
 
-Р•СЃР»Рё РёРЅС‚РµРЅС‚ РЅРµРѕС‡РµРІРёРґРµРЅ вЂ” Р·Р°РґР°С‚СЊ 1-2 СѓС‚РѕС‡РЅСЏСЋС‰РёС… РІРѕРїСЂРѕСЃР°. Р•СЃР»Рё РєРѕРЅС‚РµРєСЃС‚Р° РґРѕСЃС‚Р°С‚РѕС‡РЅРѕ, РІС‹Р±СЂР°С‚СЊ РёРЅС‚РµРЅС‚ СЃР°РјРѕСЃС‚РѕСЏС‚РµР»СЊРЅРѕ Рё РїСЂРѕРґРѕР»Р¶РёС‚СЊ.
+Если интент неочевиден — задать 1-2 уточняющих вопроса. Если контекста достаточно, выбрать интент самостоятельно и продолжить.
 
-## 2) РњР°СЂС€СЂСѓС‚РёР·Р°С†РёСЏ РїРѕ РёРЅС‚РµРЅС‚Сѓ
+## 2) Маршрутизация по интенту
 
 - `planning`: `architecture-planning-gate.mdc`, `documentation-index-first.mdc`, `primary-source.mdc`, `docs/active/DOCUMENTATION_INDEX.md`
 - `architecture`: `architecture-planning-gate.mdc`, `src/ARCHITECTURE.md`, `primary-source.mdc`, `risk-scoring-and-review-depth.mdc`, `definition-of-done-gates.mdc`
@@ -32,19 +32,17 @@ alwaysApply: true
 - `feature`: `documentation-first.mdc`, `primary-source.mdc`, `i18n-bilingual-features.mdc`, `testing-and-testcases.mdc`, `e2e-testcases-doc.mdc`, `definition-of-done-gates.mdc`
 - `refactor`: `documentation-first.mdc`, `code-cleanliness.mdc`, `testing-and-testcases.mdc`, `lint-scoped-checks.mdc`, `risk-scoring-and-review-depth.mdc`
 - `performance`: `./rules/global/algorithm-complexity-selection.mdc`, `risk-scoring-and-review-depth.mdc`, `definition-of-done-gates.mdc`
-- `api`: `api-contract-gate.mdc`, `docs/active/API_TENANT_CHECKLIST.md`, `testing-and-testcases.mdc`, `migrations-doc-and-notify.mdc` (РїРѕ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё)
+- `api`: `api-contract-gate.mdc`, `docs/active/API_TENANT_CHECKLIST.md`, `testing-and-testcases.mdc`, `migrations-doc-and-notify.mdc` (по необходимости)
 - `database`: `migrations-doc-and-notify.mdc`, `risk-scoring-and-review-depth.mdc`, `testing-and-testcases.mdc`
 - `docs`: `documentation-index-first.mdc`, `token-economy.mdc`, `communication-and-process.mdc`
 - `infra/ci`: `ci-cd.mdc`, `secrets-and-env.mdc`, `risk-scoring-and-review-depth.mdc`
 
-## 3) РњРёРЅРёРјСѓРј С„РёРєСЃР°С†РёРё РІ СЂР°Р±РѕС‡РµРј РѕС‚РІРµС‚Рµ
+## 3) Минимум фиксации в рабочем ответе
 
-РљСЂР°С‚РєРѕ Р·Р°С„РёРєСЃРёСЂРѕРІР°С‚СЊ:
+Кратко зафиксировать:
 
 - `Intent`
 - `Risk` (`low`/`medium`/`high`)
 - `Activated rules/gates`
 
-Р‘РµР· СЌС‚РѕР№ С„РёРєСЃР°С†РёРё Р·Р°РґР°С‡Р° СЃС‡РёС‚Р°РµС‚СЃСЏ РЅРµРїРѕР»РЅРѕСЃС‚СЊСЋ РјР°СЂС€СЂСѓС‚РёР·РёСЂРѕРІР°РЅРЅРѕР№.
-
-
+Без этой фиксации задача считается неполностью маршрутизированной.
