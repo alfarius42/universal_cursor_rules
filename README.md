@@ -32,28 +32,93 @@ It provides reusable `.mdc` governance rules that help make AI-assisted coding m
 - **safe by default**: anti-hallucination, contract checks, risk-aware depth
 - **model-agnostic**: rules improve consistency across weaker and stronger models
 
-## Quick start: install on your machine (Cursor)
+## Installation
 
-### Option A: Use as personal global rules
+### Option A (recommended): install as personal global rules
 
-1. Clone repository:
-   - `git clone https://github.com/alfarius42/universal_ursor_rules`
-2. Copy `rules/global/*.mdc` into your Cursor global rules folder:
-   - Windows: `%USERPROFILE%\.cursor\rules\`
-   - macOS/Linux: `~/.cursor/rules/`
-3. Restart Cursor (or reload window).
-4. Verify that files are visible in your global rules location.
+This applies the rules to all your projects on the current machine.
 
-### Option B: Use inside a specific project
+#### Windows (PowerShell)
 
-1. Copy selected rules into `<your-repo>/.cursor/rules/`.
-2. Keep all references repo-relative.
-3. Start with:
-   - `cursor-orchestrator.mdc`
-   - `task-intent-routing.mdc`
-   - `definition-of-done-gates.mdc`
-   - `risk-scoring-and-review-depth.mdc`
-   - `anti-hallucination-verification.mdc`
+```powershell
+git clone https://github.com/alfarius42/universal_ursor_rules "$env:USERPROFILE\universal_ursor_rules"
+New-Item -ItemType Directory -Force "$env:USERPROFILE\.cursor\rules" | Out-Null
+Copy-Item "$env:USERPROFILE\universal_ursor_rules\rules\global\*.mdc" "$env:USERPROFILE\.cursor\rules\" -Force
+Get-ChildItem "$env:USERPROFILE\.cursor\rules" -Filter *.mdc | Select-Object -ExpandProperty Name
+```
+
+#### macOS/Linux (bash/zsh)
+
+```bash
+git clone https://github.com/alfarius42/universal_ursor_rules "$HOME/universal_ursor_rules"
+mkdir -p "$HOME/.cursor/rules"
+cp "$HOME/universal_ursor_rules/rules/global/"*.mdc "$HOME/.cursor/rules/"
+ls -1 "$HOME/.cursor/rules/"*.mdc
+```
+
+Then reload Cursor window (or restart Cursor) so new rules are picked up.
+
+### Option B: install per project
+
+Use this if you want rules only in one repository.
+
+#### Windows (PowerShell)
+
+```powershell
+New-Item -ItemType Directory -Force ".cursor\rules" | Out-Null
+Copy-Item "$env:USERPROFILE\universal_ursor_rules\rules\global\*.mdc" ".cursor\rules\" -Force
+Get-ChildItem ".cursor\rules" -Filter *.mdc | Select-Object -ExpandProperty Name
+```
+
+#### macOS/Linux (bash/zsh)
+
+```bash
+mkdir -p .cursor/rules
+cp "$HOME/universal_ursor_rules/rules/global/"*.mdc .cursor/rules/
+ls -1 .cursor/rules/*.mdc
+```
+
+### Verify installation
+
+Minimum expected files:
+
+- `cursor-orchestrator.mdc`
+- `task-intent-routing.mdc`
+- `definition-of-done-gates.mdc`
+- `risk-scoring-and-review-depth.mdc`
+- `anti-hallucination-verification.mdc`
+
+Quick check:
+
+- ask Cursor to classify a task intent (`feature`, `bugfix`, `api`, etc.)
+- confirm it references rules from `task-intent-routing.mdc`
+- run one small task and verify final answer follows DoD blocks
+
+### Update rules later
+
+```bash
+# run in cloned universal_ursor_rules folder
+git pull
+```
+
+Then copy updated `.mdc` files again to your target rules directory.
+
+### Uninstall / rollback
+
+- remove copied `.mdc` files from:
+  - global install: `~/.cursor/rules` (or `%USERPROFILE%\.cursor\rules`)
+  - project install: `<repo>/.cursor/rules`
+- reload Cursor
+
+## Starter set for first adoption
+
+Start with:
+
+- `cursor-orchestrator.mdc`
+- `task-intent-routing.mdc`
+- `definition-of-done-gates.mdc`
+- `risk-scoring-and-review-depth.mdc`
+- `anti-hallucination-verification.mdc`
 
 ## Recommended rollout in a new team
 
