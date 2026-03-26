@@ -1,4 +1,4 @@
-# Universal Cursor Rules (Community Edition)
+# Universal Cursor Rules
 
 Open, community-oriented rule pack for Cursor.  
 This repository is designed for **any team or individual developer**, not a single internal team.
@@ -119,6 +119,43 @@ Start with:
 - `definition-of-done-gates.mdc`
 - `risk-scoring-and-review-depth.mdc`
 - `anti-hallucination-verification.mdc`
+
+## Troubleshooting
+
+### Rules are not applied after installation
+
+- reload Cursor window or restart Cursor completely
+- verify files exist in active rules location:
+  - global: `~/.cursor/rules` (Windows: `%USERPROFILE%\.cursor\rules`)
+  - project: `<repo>/.cursor/rules`
+
+### Global and project rules conflict
+
+- keep one source of truth per repository when possible
+- if both are used, ensure project-local rules are intentionally overriding global behavior
+- remove stale duplicates to avoid ambiguous guidance
+
+### Wrong folder/path used during install
+
+- confirm your shell expanded env variables correctly
+- run file listing command after copy (`Get-ChildItem` / `ls`) and verify `.mdc` files are present
+
+### CI fails on path safety check
+
+- remove machine-specific absolute paths (`C:\...`, `/Users/...`, `%USERPROFILE%`)
+- replace with repo-relative references (for example `./rules/global/...`)
+
+### CI fails on route integrity check
+
+- open `rules/global/task-intent-routing.mdc`
+- ensure every referenced `.mdc` file exists in `rules/global/`
+- fix typo/rename mismatches and re-run CI
+
+### Broken/non-UTF8 text in rules
+
+- save files as UTF-8
+- avoid tooling that silently rewrites encoding during copy
+- re-copy from source and re-apply path normalization if needed
 
 ## Recommended rollout in a new team
 
