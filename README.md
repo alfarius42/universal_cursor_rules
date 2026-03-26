@@ -1,36 +1,57 @@
 # Universal Cursor Rules
 
-Open, community-oriented rule pack for Cursor.  
-This repository is designed for **any team or individual developer**, not a single internal team.
+Набор правил для Cursor, который можно использовать в любом проекте.
 
-It provides reusable `.mdc` governance rules that help make AI-assisted coding more predictable, safer, and easier to review across different projects and models.
+Это не “магия для нейросети”, а практичный каркас процесса:
+- как выбирать нужные правила под тип задачи;
+- какие проверки обязательны перед финальным ответом;
+- как снизить риск регрессий и выдуманных решений.
 
-## Why this repository exists
+## Зачем нужны эти правила
 
-- teams need a practical baseline for Cursor rules
-- many private rule sets contain machine-specific paths and cannot be shared safely
-- AI output quality improves when governance is explicit (routing, gates, risk checks)
-- cross-project reuse is easier with globally-scoped, path-safe rules
+- чтобы ответы агента были предсказуемыми, а не “как повезёт”;
+- чтобы код-ревью было быстрее (есть единый чеклист качества);
+- чтобы меньше ломались API/контракты/миграции;
+- чтобы слабые модели давали более стабильный результат за счёт процесса.
+
+## Как это улучшает качество кода
+
+- заставляет проверять изменения, а не просто “написать код”;
+- вводит минимальный Definition of Done;
+- разделяет low/medium/high риск и глубину проверок;
+- заставляет фиксировать trade-offs и совместимость при архитектурных/API решениях.
+
+## Что внутри (верхнеуровнево)
+
+- `cursor-orchestrator.mdc` — точка входа, маршрут по правилам.
+- `task-intent-routing.mdc` — классификация задачи (feature/bugfix/api/performance и т.д.) и какие правила включать.
+- `definition-of-done-gates.mdc` — что обязательно должно быть сделано перед завершением.
+- `risk-scoring-and-review-depth.mdc` — уровень риска и обязательная глубина проверки.
+- `api-contract-gate.mdc`, `architecture-planning-gate.mdc`, `anti-hallucination-verification.mdc` — профильные guardrails.
+- тематические правила: i18n, миграции, тесты, линтер, документация и др.
+
+## Что важно понимать заранее
+
+- Эти правила работают лучше всего, если:
+  - в проекте есть профильные **Skills** под конкретный стек/домен;
+  - проект хорошо покрыт актуальной документацией;
+  - подключены нужные проекту **MCP** (где это требуется).
+- Сами по себе правила не заменяют ни документацию, ни доменные навыки.
+
+## Что такое оркестратор
+
+`cursor-orchestrator.mdc` — это не одно “правило про всё”, а слой координации всего набора:
+- определяет, какие правила читать первыми;
+- связывает routing (`task-intent-routing`) и gate-правила;
+- задаёт последовательность: контекст -> реализация -> проверки.
+
+То есть оркестратор = комплекс правил + порядок их применения.
 
 ## What is included
 
 - `rules/global/*.mdc` - global reusable rules
 - `.github/workflows/path-safety.yml` - blocks machine-specific absolute paths
 - `.github/workflows/route-integrity.yml` - validates routing references in `task-intent-routing.mdc`
-
-## Who should use this
-
-- engineering teams adopting Cursor at scale
-- solo developers who want consistent AI behavior
-- tech leads/reviewers who want quality gates before merge
-- OSS maintainers who need shared, portable governance files
-
-## Core principles
-
-- **portable**: no local machine paths
-- **reviewable**: clear route/gate logic in plain text rules
-- **safe by default**: anti-hallucination, contract checks, risk-aware depth
-- **model-agnostic**: rules improve consistency across weaker and stronger models
 
 ## Installation
 
