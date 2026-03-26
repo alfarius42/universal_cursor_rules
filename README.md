@@ -104,6 +104,15 @@ Quick check:
 - confirm it references rules from `task-intent-routing.mdc`
 - run one small task and verify final answer follows DoD blocks
 
+### Smoke test after installation (1 minute)
+
+1. Ask Cursor: `Classify this task intent: "Add new API endpoint for billing usage".`
+   - Expected: intent `api` and references to `api-contract-gate.mdc` + related gates.
+2. Ask Cursor: `Optimize a slow query for tender search with large n.`
+   - Expected: reference to `algorithm-complexity-selection.mdc` and complexity/evidence checklist.
+3. Ask Cursor: `Implement a small frontend feature with new UI text.`
+   - Expected: i18n rule usage (`i18n-bilingual-features.mdc`) and DoD-style final structure.
+
 ### Update rules later
 
 ```bash
