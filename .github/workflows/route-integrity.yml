@@ -1,0 +1,64 @@
+name: Route Integrity Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  validate-route-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate task-intent routing references
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          import sys
+
+          routing_path = Path("rules/global/task-intent-routing.mdc")
+          if not routing_path.exists():
+            print(f"Missing routing file: {routing_path}")
+            sys.exit(1)
+
+          text = routing_path.read_text(encoding="utf-8")
+          route_line = re.compile(r"^\s*-\s+`[^`]+`:\s+(.+)$")
+          backticked = re.compile(r"`([^`]+)`")
+
+          errors = []
+          checked = []
+
+          for line_no, line in enumerate(text.splitlines(), start=1):
+            m = route_line.match(line)
+            if not m:
+              continue
+
+            rhs = m.group(1)
+            refs = [r for r in backticked.findall(rhs) if r.endswith(".mdc")]
+            for ref in refs:
+              if ref.startswith("./rules/global/"):
+                target = Path(ref[2:])
+              elif "/" in ref:
+                # Path-like reference outside global rules (docs/source files).
+                # Not a route-integrity target for rule existence check.
+                continue
+              else:
+                target = Path("rules/global") / ref
+
+              checked.append((line_no, ref, str(target)))
+              if not target.exists():
+                errors.append((line_no, ref, str(target)))
+
+          if errors:
+            print("Route integrity check failed. Missing rule files:\n")
+            for line_no, ref, target in errors:
+              print(f"line {line_no}: `{ref}` -> {target} (NOT FOUND)")
+            sys.exit(1)
+
+          print("Route integrity check passed.")
+          print(f"Validated {len(checked)} rule references from {routing_path}.")
+          PY

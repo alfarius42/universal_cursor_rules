@@ -1,76 +1,92 @@
-# Universal Cursor Rules Mirror
+# Universal Cursor Rules (Community Edition)
 
-Public, reusable mirror of Cursor rule sets prepared for open-source sharing.
+Open, community-oriented rule pack for Cursor.  
+This repository is designed for **any team or individual developer**, not a single internal team.
 
-This repository is intended to make rule-based agent governance portable between teams and machines. It contains no application source code, only policy/rules in `.mdc` format.
+It provides reusable `.mdc` governance rules that help make AI-assisted coding more predictable, safer, and easier to review across different projects and models.
 
-## Who this is for
+## Why this repository exists
 
-- Teams adopting Cursor rules and skills governance
-- Developers who need a starter rules baseline
-- Reviewers who want predictable quality gates for AI-assisted coding
-- Maintainers who need a public-safe mirror of private/local rule sets
+- teams need a practical baseline for Cursor rules
+- many private rule sets contain machine-specific paths and cannot be shared safely
+- AI output quality improves when governance is explicit (routing, gates, risk checks)
+- cross-project reuse is easier with globally-scoped, path-safe rules
 
-## What is mirrored
+## What is included
 
-- Unified global rule set: `rules/global/*.mdc`
+- `rules/global/*.mdc` - global reusable rules
+- `.github/workflows/path-safety.yml` - blocks machine-specific absolute paths
+- `.github/workflows/route-integrity.yml` - validates routing references in `task-intent-routing.mdc`
 
-## Why this exists
+## Who should use this
 
-- Original rules often contain machine-specific absolute paths
-- Private repos frequently mix local conventions with reusable policy
-- Sharing a sanitized mirror helps onboard external contributors faster
-- Stable rule references improve consistency across different AI models
+- engineering teams adopting Cursor at scale
+- solo developers who want consistent AI behavior
+- tech leads/reviewers who want quality gates before merge
+- OSS maintainers who need shared, portable governance files
 
-## Repository structure
+## Core principles
 
-- `rules/global/` - all mirrored rules, normalized for global reuse
-- `.github/workflows/` - validation workflow for path safety
+- **portable**: no local machine paths
+- **reviewable**: clear route/gate logic in plain text rules
+- **safe by default**: anti-hallucination, contract checks, risk-aware depth
+- **model-agnostic**: rules improve consistency across weaker and stronger models
 
-## Path safety policy
+## Quick start: install on your machine (Cursor)
 
-- Rules in this mirror must use repo-relative or generic paths
-- Machine-specific absolute paths are not allowed, including:
-  - Windows drive paths (`C:\...`, `D:\...`)
-  - User-home absolute paths (`C:/Users/...`, `/Users/...`, `/home/...`)
-  - `%USERPROFILE%`-based absolute references
-- Global complexity rule should be referenced as:
+### Option A: Use as personal global rules
+
+1. Clone repository:
+   - `git clone https://github.com/alfarius42/universal_ursor_rules`
+2. Copy `rules/global/*.mdc` into your Cursor global rules folder:
+   - Windows: `%USERPROFILE%\.cursor\rules\`
+   - macOS/Linux: `~/.cursor/rules/`
+3. Restart Cursor (or reload window).
+4. Verify that files are visible in your global rules location.
+
+### Option B: Use inside a specific project
+
+1. Copy selected rules into `<your-repo>/.cursor/rules/`.
+2. Keep all references repo-relative.
+3. Start with:
+   - `cursor-orchestrator.mdc`
+   - `task-intent-routing.mdc`
+   - `definition-of-done-gates.mdc`
+   - `risk-scoring-and-review-depth.mdc`
+   - `anti-hallucination-verification.mdc`
+
+## Recommended rollout in a new team
+
+1. Enable orchestrator + routing first.
+2. Add DoD/risk/API gates.
+3. Add performance gate (`algorithm-complexity-selection.mdc`) for backend/data tasks.
+4. Review first 1-2 sprints and tune rule wording for your domain.
+
+## CI validation in this repository
+
+- **Path Safety Check**: fails on local machine absolute paths (`C:\...`, `/Users/...`, `%USERPROFILE%`, etc.).
+- **Route Integrity Check**: fails when `task-intent-routing.mdc` references a missing `.mdc` rule.
+
+## Path policy (important)
+
+- use repo-relative paths where possible
+- avoid user-specific absolute paths
+- canonical complexity rule reference:
   - `./rules/global/algorithm-complexity-selection.mdc`
 
-## CI validation
+## Limitations
 
-GitHub Actions validates mirror safety on every push/PR:
+- this repository contains governance rules, not implementation code
+- some rules may reference docs/skills patterns that need adaptation in your repo
+- teams should localize wording to their workflow, language, and compliance constraints
 
-- scans all `rules/**/*.mdc`
-- fails if absolute local path patterns are detected
-- prevents accidental reintroduction of private machine references
+## Contributing
 
-## How to use in another project
+Contributions are welcome from the community.
 
-1. Copy required rules from `rules/global/`
-2. Keep references repo-relative for your target repository
-3. Add/update your orchestrator rule to point to local mirror paths
-4. Keep gate rules (`DoD`, `risk`, `api-contract`, `anti-hallucination`) enabled by default
+Please keep changes:
 
-## Syncing from source repositories
-
-When updating this mirror:
-
-1. Pull latest source rules
-2. Normalize paths to mirror-relative form
-3. Run path-safety validation
-4. Commit with a clear changelog-style message
-
-## Scope and limitations
-
-- This repository is policy-only; it does not include code implementation examples
-- Some mirrored rules may reference docs/skills that exist only in source projects
-- Consumers should adapt rule links to their own repository layout
-
-## License and contribution notes
-
-Treat this repository as shared governance content. If you contribute:
-
-- keep wording clear for external teams
-- avoid private/project-secrets in examples
-- preserve path portability and CI pass status
+- portable across machines and OS
+- clear for external users (not only original authors)
+- free from secrets and private infrastructure references
+- compatible with CI checks in `.github/workflows/`
