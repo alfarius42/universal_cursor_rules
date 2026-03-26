@@ -55,59 +55,26 @@
 
 ## Installation
 
-### Option A (recommended): install as personal global rules
+Инструкция одна: **все файлы `*.mdc` из папки репозитория `rules/global/` скопировать в папку правил Cursor** (проводником, Finder или любым файловым менеджером — консоль не нужна).
 
-This applies the rules to all your projects on the current machine.
+1. **Получите копию репозитория:** на GitHub откройте https://github.com/alfarius42/universal_cursor_rules → **Code → Download ZIP**, распакуйте архив. Либо используйте уже клонированную папку — суть та же.
+2. В распакованной (или клонированной) копии откройте каталог **`rules/global/`** — в нём лежат все правила (`*.mdc`).
+3. **Выберите назначение:**
+   - **Глобально** (все проекты на этом компьютере) — скопируйте все `.mdc` в папку глобальных правил Cursor:
 
-#### Windows (PowerShell)
+   | Система | Путь назначения |
+   |--------|------------------|
+   | **Windows** | `%USERPROFILE%\.cursor\rules\` (вставьте в адресную строку Проводника и нажмите Enter). Полный вид: `C:\Users\<логин>\.cursor\rules\`. Папки `.cursor` и `rules` создайте при отсутствии. |
+   | **macOS** | `~/.cursor/rules/` (Finder: **Переход → Переход к папке…** → `~/.cursor/rules`). |
+   | **Linux** | `~/.cursor/rules/` |
 
-```powershell
-$repoPath = "$env:USERPROFILE\universal_cursor_rules"
-if (Test-Path $repoPath) {
-  git -C $repoPath pull
-} else {
-  git clone https://github.com/alfarius42/universal_cursor_rules $repoPath
-}
-New-Item -ItemType Directory -Force "$env:USERPROFILE\.cursor\rules" | Out-Null
-Copy-Item "$env:USERPROFILE\universal_cursor_rules\rules\global\*.mdc" "$env:USERPROFILE\.cursor\rules\" -Force
-Get-ChildItem "$env:USERPROFILE\.cursor\rules" -Filter *.mdc | Select-Object -ExpandProperty Name
-```
+   - **Только один репозиторий** — скопируйте те же файлы в **`<корень_проекта>/.cursor/rules/`** (создайте вложенные папки `.cursor` и `rules`, если их нет).
 
-#### macOS/Linux (bash/zsh)
+4. Перезапустите Cursor или **Developer: Reload Window**, чтобы подхватились файлы.
 
-```bash
-REPO_PATH="$HOME/universal_cursor_rules"
-if [ -d "$REPO_PATH/.git" ]; then
-  git -C "$REPO_PATH" pull
-else
-  git clone https://github.com/alfarius42/universal_cursor_rules "$REPO_PATH"
-fi
-mkdir -p "$HOME/.cursor/rules"
-cp "$HOME/universal_cursor_rules/rules/global/"*.mdc "$HOME/.cursor/rules/"
-ls -1 "$HOME/.cursor/rules/"*.mdc
-```
+**Обновление правил:** снова скачайте свежий ZIP (или обновите клон) и перекопируйте содержимое `rules/global/` в ту же папку назначения, подтверждая замену файлов.
 
-Then reload Cursor window (or restart Cursor) so new rules are picked up.
-
-### Option B: install per project
-
-Use this if you want rules only in one repository.
-
-#### Windows (PowerShell)
-
-```powershell
-New-Item -ItemType Directory -Force ".cursor\rules" | Out-Null
-Copy-Item "$env:USERPROFILE\universal_cursor_rules\rules\global\*.mdc" ".cursor\rules\" -Force
-Get-ChildItem ".cursor\rules" -Filter *.mdc | Select-Object -ExpandProperty Name
-```
-
-#### macOS/Linux (bash/zsh)
-
-```bash
-mkdir -p .cursor/rules
-cp "$HOME/universal_cursor_rules/rules/global/"*.mdc .cursor/rules/
-ls -1 .cursor/rules/*.mdc
-```
+Если репозиторий уже лежит у вас в виде git-клона, достаточно после `git pull` снова скопировать `rules/global/*.mdc` в `~/.cursor/rules` или в `.cursor/rules` проекта — тем же способом, что в шагах выше.
 
 ### Verify installation
 
@@ -133,15 +100,6 @@ Quick check:
    - Expected: reference to `algorithm-complexity-selection.mdc` and complexity/evidence checklist.
 3. Ask Cursor: `Implement a small frontend feature with new UI text.`
    - Expected: i18n rule usage (`i18n-bilingual-features.mdc`) and DoD-style final structure.
-
-### Update rules later
-
-```bash
-# run in cloned universal_cursor_rules folder
-git pull
-```
-
-Then copy updated `.mdc` files again to your target rules directory.
 
 ### Uninstall / rollback
 
@@ -177,8 +135,7 @@ Start with:
 
 ### Wrong folder/path used during install
 
-- confirm your shell expanded env variables correctly
-- run file listing command after copy (`Get-ChildItem` / `ls`) and verify `.mdc` files are present
+- откройте целевую папку в Проводнике / Finder и убедитесь, что там лежат те же `.mdc`, что и в `rules/global/` (например `cursor-orchestrator.mdc`, `task-intent-routing.mdc`).
 
 ### CI fails on path safety check
 
