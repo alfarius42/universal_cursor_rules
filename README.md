@@ -64,7 +64,7 @@
 
    | Система | Путь назначения |
    |--------|------------------|
-   | **Windows** | `C:\Users\<логин>\.cursor\rules\` — вставьте в адресную строку Проводника и нажмите Enter (подставьте свой логин Windows вместо `<логин>`). Папки `.cursor` и `rules` создайте при отсутствии. |
+   | **Windows** | `C:\Users\<логин>\.cursor\rules\` — вставьте в адресную строку Проводника (подставьте свой логин Windows) и нажмите Enter. Папки `.cursor` и `rules` создайте при отсутствии. |
    | **macOS** | `~/.cursor/rules/` (Finder: **Переход → Переход к папке…** → `~/.cursor/rules`). |
    | **Linux** | `~/.cursor/rules/` |
 
@@ -139,7 +139,7 @@ Start with:
 
 ### CI fails on path safety check
 
-- remove machine-specific absolute paths (`C:\...`, `/Users/...`, `/home/...`)
+- remove machine-specific absolute paths (`C:\...`, `/Users/...`, Windows USERPROFILE-style paths)
 - replace with repo-relative references (for example `./rules/global/...`)
 
 ### CI fails on route integrity check
@@ -163,7 +163,7 @@ Start with:
 
 ## CI validation in this repository
 
-- **Path Safety Check**: fails on local machine absolute paths (`C:\...`, `/Users/...`, `/home/...`, etc.).
+- **Path Safety Check**: fails on local machine absolute paths (`C:\...`, `/Users/...`, Windows USERPROFILE-style paths, etc.).
 - **Route Integrity Check**: fails when `task-intent-routing.mdc` references a missing `.mdc` rule.
 
 ## Path policy (important)
