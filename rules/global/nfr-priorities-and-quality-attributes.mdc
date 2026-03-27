@@ -1,6 +1,6 @@
 ---
 description: Фиксация и приоритизация NFR для архитектурных решений с явными trade-offs
-alwaysApply: true
+alwaysApply: false
 ---
 
 # NFR Priorities and Quality Attributes

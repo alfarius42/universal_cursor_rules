@@ -1,6 +1,6 @@
 ---
 description: Архитектурные fitness functions — автоматические проверки архитектурных инвариантов
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Fitness Functions

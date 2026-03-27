@@ -1,6 +1,6 @@
 ---
 description: Monolith First и строгие триггеры перехода к микросервисам; финальное решение принимает человек
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Monolith First and Split Triggers

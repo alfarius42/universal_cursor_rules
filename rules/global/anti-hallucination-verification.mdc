@@ -1,6 +1,6 @@
 ---
 description: Анти-галлюцинационный режим — запрет выдуманных API/файлов/результатов и обязательная верификация утверждений
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Anti-Hallucination Verification

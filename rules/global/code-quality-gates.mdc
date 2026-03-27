@@ -32,13 +32,10 @@ alwaysApply: false
    - В CI должен быть отдельный шаг quality gate (агрегатор проверок).
    - Gate должен падать при нарушении порогов.
 
-4. **High-risk review packet gate**
-   - Для high-risk задач обязательны артефакты: ADR-lite, threat-model mini, domain gotchas, high-risk checklist.
-   - Отсутствие packet-артефактов блокирует завершение задачи.
-
-5. **High-risk final answer links gate**
-   - Для high-risk задач финальный отчёт должен содержать ссылки на 4 обязательных артефакта.
-   - Проектный CI/скрипт обязан это валидировать machine-checkable способом.
+4. **Backward compatibility gate** (при изменении публичных контрактов: API, DTO, события, версии пакетов, формат данных)
+   - Следовать `deprecation-and-backward-compatibility.mdc` и при наличии API — `api-contract-gate.mdc`.
+   - В финальном ответе/описании задачи перечислено, что подтверждает совместимость (тесты, типы, сценарий миграции при breaking).
+   - Завершение задачи при изменении контракта без этой фиксации — нарушение DoD.
 
 ## Исключения
 

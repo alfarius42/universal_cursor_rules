@@ -1,6 +1,6 @@
 ---
 description: Обязательная наблюдаемость для новых архитектурных компонентов и интеграций
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Architecture Observability Gate

@@ -1,9 +1,11 @@
 ---
 description: Обязательный review packet для high-risk задач
-alwaysApply: true
+alwaysApply: false
 ---
 
 # High-Risk Review Packet
+
+Если в репозитории есть **`high-risk-review-packet.local.mdc`** (пути к ADR-lite, чеклистам, абсолютные пути для CI), при high-risk задаче подключать его через `@` вместе с этим файлом или вместо дублирования содержимого.
 
 ## Когда обязательно
 

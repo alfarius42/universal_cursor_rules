@@ -1,6 +1,6 @@
 ---
 description: Best practices для бэкенд-разработки
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Backend Best Practices

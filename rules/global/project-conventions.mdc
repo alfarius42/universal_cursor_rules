@@ -1,6 +1,6 @@
 ---
 description: Правила ведения проекта — Gitflow, коммиты, структура docs
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Ведение проекта (универсально)
@@ -9,6 +9,7 @@ alwaysApply: true
 
 - Базовая модель: `main`/`master` для стабильной версии, `develop` (по необходимости), `feature/*`, `hotfix/*`, `release/*`.
 - Если в проекте другая стратегия (trunk-based и т.д.) — использовать локальное правило проекта.
+- **Для AI Tender Tool authoritative-источник по веткам:** `git-workflow.mdc` (коммиты в `develop`, в `main` — только через merge из `develop` в удалённом репозитории).
 
 ## Коммиты
 

@@ -7,6 +7,8 @@ alwaysApply: true
 
 ## Порядок обращения к контексту
 
+0. **Правила:** в пакете `rules/global/` ядро из восьми `alwaysApply` файлов перечислено в `cursor-orchestrator.mdc` (оркестратор, bootstrap, маршрутизация, token-economy, documentation-index-first, primary-source, tech-stack, communication). Остальное из `.cursor/rules/` — по интенту через `@` (`task-intent-routing.mdc`). В конкретном репо часть ядра может заменяться `*.local.mdc`.
+
 1. **Сначала — основной документ по проекту.** Если в проекте есть спецификация/PRD/архитектурный обзор, начинать с него.
 2. **Затем — индекс документации.** При необходимости использовать `CURSOR_CONTEXT.md`, `docs/**/DOCUMENTATION_INDEX.md`, `docs/**`, `src/docs/**`; подгружать только нужные документы.
 3. **Не загружать всё сразу.** Не дублировать в контексте уже открытые/упомянутые документы.

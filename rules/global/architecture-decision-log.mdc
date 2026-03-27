@@ -1,6 +1,6 @@
 ---
 description: Фиксация решений человека по архитектуре в журнале CURRENT_DECISIONS.md по единому шаблону
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Architecture Decision Log

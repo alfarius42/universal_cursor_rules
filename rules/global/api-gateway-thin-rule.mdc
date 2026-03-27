@@ -1,6 +1,6 @@
 ---
 description: Правило тонкого API Gateway — только cross-cutting функции без бизнес-логики
-alwaysApply: true
+alwaysApply: false
 ---
 
 # API Gateway Thin Rule

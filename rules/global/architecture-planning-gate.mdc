@@ -1,6 +1,6 @@
 ---
 description: Gate для задач планирования и архитектуры — обязательные артефакты, альтернативы и критерии принятия решения
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Architecture and Planning Gate

@@ -1,6 +1,6 @@
 ---
 description: Best practices для фронтенд-разработки на React
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Frontend React Best Practices

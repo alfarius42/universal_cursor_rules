@@ -1,6 +1,6 @@
 ---
 description: Ветки и коммиты из чата — develop по умолчанию
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Git и коммиты из чата

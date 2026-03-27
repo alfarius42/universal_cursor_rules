@@ -1,6 +1,6 @@
 ---
 description: Жизненный цикл ADR: шаблон, статус, ревью-дата и критерии пересмотра решений
-alwaysApply: true
+alwaysApply: false
 ---
 
 # ADR Lifecycle and Expiration

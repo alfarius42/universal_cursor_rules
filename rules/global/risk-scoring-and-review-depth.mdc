@@ -1,6 +1,6 @@
 ---
 description: Риск-оценка изменений и обязательная глубина проверок перед завершением задачи
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Risk Scoring and Review Depth

@@ -1,6 +1,6 @@
 ---
 description: Контроль coupling/cohesion при архитектурных и крупных рефакторинг-изменениях
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Coupling Cohesion Budget

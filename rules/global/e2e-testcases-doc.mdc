@@ -1,6 +1,6 @@
 ---
 description: Обязательное дополнение документа E2E_TESTCASES.md при добавлении или изменении функционала
-alwaysApply: true
+alwaysApply: false
 ---
 
 # E2E тест-кейсы — актуализация документа

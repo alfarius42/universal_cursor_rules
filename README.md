@@ -48,6 +48,14 @@ Rules alone do not replace documentation or domain expertise.
 
 So: orchestrator = the rule set + order of application.
 
+## Context budget (`alwaysApply`)
+
+To reduce noise in every chat, the pack keeps a **portable eight-rule core** on `alwaysApply: true` (see `cursor-orchestrator.mdc`): orchestrator, bootstrap, intent routing, token economy, documentation index, primary source, tech stack, communication. **Everything else** is loaded by intent via `@.cursor/rules/…` and `task-intent-routing.mdc`.
+
+Teams that need heavier always-on policy (e.g. concrete doc paths, CI commands) add **`*.local.mdc`** files in `<repo>/.cursor/rules/` and may turn off overlapping globals in that repo. **Executable source of truth** for a task is always the repo’s `.cursor/rules/`; copies under Cursor User rules are a **template** for syncing, not the live contract (see `project-rules-bootstrap.mdc`).
+
+An example of a repo with full local overrides (paths, CI, high-risk machine-check) is [AI_Tender_Tool_Development](https://github.com/alfarius42/AI_Tender_Tool_Development) (optional reference, not required for this pack).
+
 ## What is included
 
 - **`rules/global/*.mdc`** — reusable global rules. For installation on your machine **you only need these files** (see [Installation](#installation)).
@@ -111,11 +119,11 @@ Quick check:
 
 ## Starter set for first adoption
 
-Start with:
+Minimum process skeleton (already part of the eight-rule core unless you trim `alwaysApply`):
 
 - `cursor-orchestrator.mdc`
 - `task-intent-routing.mdc`
-- `definition-of-done-gates.mdc`
+- `definition-of-done-gates.mdc` (via `@` when finishing work)
 - `risk-scoring-and-review-depth.mdc`
 - `anti-hallucination-verification.mdc`
 

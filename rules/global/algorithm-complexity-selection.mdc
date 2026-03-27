@@ -1,7 +1,7 @@
 ---
 description: Выбор алгоритмов по асимптотике и эксплуатационной эффективности
 globs: ["**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx", "**/*.py", "**/*.go", "**/*.java", "**/*.cs", "**/*.sql"]
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Algorithm Complexity Selection

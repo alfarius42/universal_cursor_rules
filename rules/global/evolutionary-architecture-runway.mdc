@@ -1,6 +1,6 @@
 ---
 description: Эволюционная архитектура — баланс тактических и стратегических решений с управлением архитектурным runway
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Evolutionary Architecture Runway

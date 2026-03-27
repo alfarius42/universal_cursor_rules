@@ -1,46 +1,65 @@
 ---
-description: Глобальный оркестратор Cursor — универсальный маршрут правил и gates
+description: Глобальный оркестратор Cursor — маршрут правил, бюджет контекста, фазы explore/complete
 alwaysApply: true
 ---
 
 # Оркестратор правил и skills (Global)
 
-**Назначение:** дать универсальный порядок работы для любого репозитория.
+**Назначение:** универсальный порядок работы для любого репозитория. Тяжёлые гейты подключаются по интенту через `@.cursor/rules/…` (см. `task-intent-routing.mdc`).
+
+## 0) Приоритет и источник истины
+
+**В открытом репозитории** исполняются файлы из `<repo>/.cursor/rules/`. Копии этих правил в Cursor **User/Global** — шаблон для переноса в проект; при работе в репо опираться на локальные файлы. См. `project-rules-bootstrap.mdc`.
+
+**Портируемое ядро (`alwaysApply: true` в пакете `rules/global/`):** этот файл, `project-rules-bootstrap.mdc`, `task-intent-routing.mdc`, `token-economy.mdc`, `documentation-index-first.mdc`, `primary-source.mdc`, `tech-stack.mdc`, `communication-and-process.mdc`. Остальное — по интенту через `@`.
+
+**Проектные overrides:** команды добавляют в `<repo>/.cursor/rules/` файлы вида `*.local.mdc` (пути документации, CI, стек, high-risk paths, machine-check). Они **перекрывают** общие формулировки; имеет смысл включить их в `alwaysApply: true` в этом репо и снять дубли.
+
+Порядок при конфликте (верх сильнее):
+
+1. `project-rules-bootstrap.mdc`
+2. Любые `*.local.mdc` из репозитория (если есть)
+3. Остальные `.cursor/rules/*.mdc` — по задаче через `@`
+
+## 0a) Старт задачи и фазы
+
+- Зафиксировать: `Intent`, `Risk` (`low` / `medium` / `high`), `Phase`: `explore` или `complete`.
+- **`explore`:** исследование, короткие ответы, без полного блока DoD, пока пользователь не запросил финализацию.
+- **`complete`:** финальный ответ по `definition-of-done-gates.mdc` и набор `@` по таблице интента в `task-intent-routing.mdc`.
 
 ## 1. Порядок работы (маршрут по типу задачи)
 
 | Этап | Куда |
 |------|------|
-| Старт любой задачи | `project-rules-bootstrap.mdc` -> `task-intent-routing.mdc` |
-| Поиск документации | `documentation-index-first.mdc` + `token-economy.mdc` |
-| Архитектура и границы модулей | `architecture-planning-gate.mdc` + профильные архитектурные правила |
-| Классификация задачи и выбор маршрута | `task-intent-routing.mdc` |
-| Планирование и архитектурные решения | `architecture-planning-gate.mdc` + `context-first-architecture.mdc` + `nfr-priorities-and-quality-attributes.mdc` + `coupling-cohesion-budget.mdc` + `fitness-functions.mdc` |
-| High-risk review packet | `high-risk-review-packet.mdc` |
-| High-risk final answer links | `high-risk-final-answer-links.mdc` |
-| Типовые сценарии реализации | `project-playbooks.mdc` + локальные playbooks проекта |
-| Жёсткие quality gates кода и CI | `code-quality-gates.mdc` + `code-cleanliness.mdc` + `ci-cd.mdc` |
-| Проверка качества после правок кода | `testing-and-testcases.mdc` -> `lint-scoped-checks.mdc` -> `code-quality-gates.mdc` -> `ci-cd.mdc` |
-| DoD и формат финального ответа | `definition-of-done-gates.mdc` |
-| Проверка фактов и запрет выдумок | `anti-hallucination-verification.mdc` |
-| Риск-оценка и глубина ревью | `risk-scoring-and-review-depth.mdc` |
-| Секреты и env | `secrets-and-env.mdc` |
-| БД-миграции | `migrations-doc-and-notify.mdc` |
-| API-контракты и совместимость | `api-contract-gate.mdc` + `deprecation-and-backward-compatibility.mdc` |
-| Dev-серверы и порты | `dev-server-no-background.mdc` (если применимо) |
-| Git и процесс коммитов | `git-workflow.mdc`, `project-conventions.mdc` |
-| Подбор внешнего skill | `skill-discovery-from-awesome-agent-skills.mdc` |
-| Backend/Frontend практики | профильные правила локального репозитория |
-| Документация ручного/E2E тестирования | `e2e-testcases-doc.mdc` (если применимо) |
-| Стиль коммуникации и порядок процесса | `communication-and-process.mdc` |
-| Интеграции внешних провайдеров | профильный skill/rule конкретного проекта |
-| Выбор алгоритма/структуры данных/индексов | `algorithm-complexity-selection.mdc` |
+| Старт задачи | `project-rules-bootstrap.mdc` → при наличии `*.local.mdc` (пути/стек/CI) → `task-intent-routing.mdc` |
+| Поиск документации | `documentation-index-first.mdc` + `primary-source.mdc` + `token-economy.mdc` |
+| Архитектура | `architecture-planning-gate.mdc` + профильные архитектурные правила + при необходимости `tech-stack.mdc` / локальный override стека |
+| Классификация | `task-intent-routing.mdc` |
+| Планирование / архитектурные решения | `architecture-planning-gate.mdc` + `context-first-architecture.mdc` + `nfr-priorities-and-quality-attributes.mdc` + `coupling-cohesion-budget.mdc` + `fitness-functions.mdc` |
+| High-risk packet | `high-risk-review-packet.mdc` + при наличии в репо — локальный override с путями к артефактам |
+| High-risk final links | `high-risk-final-answer-links.mdc` + при наличии — локальный override (machine-check, журнал PR) |
+| Типовые сценарии | `project-playbooks.mdc` + playbooks из документации проекта |
+| Quality gates / CI | `code-quality-gates.mdc` + `code-cleanliness.mdc` + `ci-cd.mdc` (+ локальный override CI, если есть) |
+| После правок кода | `testing-and-testcases.mdc` → `lint-scoped-checks.mdc` → `code-quality-gates.mdc` → `ci-cd.mdc` |
+| DoD | `definition-of-done-gates.mdc` |
+| Факты | `anti-hallucination-verification.mdc` |
+| Риск | `risk-scoring-and-review-depth.mdc` |
+| Секреты | `secrets-and-env.mdc` |
+| Миграции | `migrations-doc-and-notify.mdc` |
+| API | `api-contract-gate.mdc` + `deprecation-and-backward-compatibility.mdc` |
+| Dev-серверы | `dev-server-no-background.mdc` (если применимо) |
+| Git | `git-workflow.mdc`, `project-conventions.mdc` |
+| Skills | `skill-discovery-from-awesome-agent-skills.mdc` + `.cursor/skills/*` по домену |
+| Frontend/Backend | `frontend-react-best-practices.mdc`, `backend-best-practices.mdc` при релевантности |
+| E2E | `e2e-testcases-doc.mdc` (если применимо) |
+| Коммуникация | `communication-and-process.mdc` |
+| Алгоритмы | `algorithm-complexity-selection.mdc` |
 
 ## 2. Индекс групп правил
 
 **Документация и контекст:** `project-rules-bootstrap.mdc`, `documentation-index-first.mdc`, `documentation-first.mdc`, `token-economy.mdc`, `primary-source.mdc`
 
-**Качество и тесты:** `high-risk-review-packet.mdc`, `high-risk-final-answer-links.mdc`, `testing-and-testcases.mdc`, `e2e-testcases-doc.mdc`, `lint-scoped-checks.mdc`, `ci-cd.mdc`, `code-cleanliness.mdc`, `code-quality-gates.mdc`, `definition-of-done-gates.mdc`
+**Качество и тесты:** `testing-and-testcases.mdc`, `e2e-testcases-doc.mdc`, `lint-scoped-checks.mdc`, `ci-cd.mdc`, `code-cleanliness.mdc`, `code-quality-gates.mdc`, `definition-of-done-gates.mdc`, `high-risk-review-packet.mdc`, `high-risk-final-answer-links.mdc`
 
 **Безопасность и окружение:** `secrets-and-env.mdc`, `migrations-doc-and-notify.mdc`, `dev-server-no-background.mdc`, `anti-hallucination-verification.mdc`, `api-contract-gate.mdc`
 
@@ -48,20 +67,18 @@ alwaysApply: true
 
 **Стек и платформа:** `tech-stack.mdc`, `backend-best-practices.mdc`, `frontend-react-best-practices.mdc`, `i18n-bilingual-features.mdc`, `coupling-cohesion-budget.mdc`, `fitness-functions.mdc`, `api-gateway-thin-rule.mdc`, `architecture-observability-gate.mdc`
 
-*При добавлении нового правила в `.cursor/rules/` добавлять его в соответствующую группу этого раздела.*
+*Новые файлы в `rules/global/` заносить в соответствующую группу этого раздела.*
 
-## 3. Global -> Local правило (обязательно)
+## 3. Global → project copy
 
-Для каждого проекта:
-
-1. Создаётся локальная копия правил в `<repo>/.cursor/rules/`.
-2. Агент в проекте работает **по локальным правилам проекта**.
-3. Глобальные правила используются как baseline/шаблон и источник обновлений.
-4. При конфликте глобального и локального правила приоритет у локального.
+1. Правила в репозитории: `<repo>/.cursor/rules/`.
+2. Агент исполняет **только** их при работе в проекте.
+3. Универсальный пакет (этот репозиторий) — источник обновлений шаблона.
+4. Локальные `*.local.mdc` не дублировать смыслом с базовыми файлами без необходимости; при конфликте приоритет у `.local` в конкретном репо.
 
 ## 4. Когда вызывать `code-quality-gates.mdc`
 
-- Любые задачи с правками кода (`feature`, `bugfix`, `refactor`, `api`) перед завершением.
-- Любые задачи `infra/ci`, где меняются workflow/scripts/package.json.
-- Когда есть риск clone-paste логики или добавляются новые публичные/сложные функции.
-- Когда задача выполнена AI-агентом и нужен жёсткий контроль самодокументируемости.
+- Задачи с правками кода (`feature`, `bugfix`, `refactor`, `api`) перед завершением.
+- `infra/ci`: workflow, scripts, `package.json`.
+- Риск дублирования логики или новые публичные API.
+- Изменение контрактов: `deprecation-and-backward-compatibility.mdc`, при HTTP — `api-contract-gate.mdc`.

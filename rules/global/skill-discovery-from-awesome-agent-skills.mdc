@@ -1,6 +1,6 @@
 ---
 description: Поиск и предложение релевантных Agent Skills при нехватке знаний
-alwaysApply: true
+alwaysApply: false
 ---
 
 # Когда применять (обязательно)

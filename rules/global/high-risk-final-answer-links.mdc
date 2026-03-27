@@ -1,9 +1,11 @@
 ---
 description: High-risk финальный отчёт должен содержать ссылки на обязательные review-артефакты
-alwaysApply: true
+alwaysApply: false
 ---
 
 # High-Risk Final Answer Links
+
+Если в репозитории есть **`high-risk-final-answer-links.local.mdc`** (machine-check, журнал PR, absolute paths), подключать при high-risk финализации через `@`.
 
 ## Когда обязательно
 
