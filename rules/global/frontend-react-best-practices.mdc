@@ -1,11 +1,11 @@
 ---
-description: Best practices для фронтенд-разработки на React (AI Tender Tool)
+description: Best practices для фронтенд-разработки на React
 alwaysApply: true
 ---
 
 # Frontend React Best Practices
 
-Источник: [fullstack-development/front-end-best-practices — React](https://github.com/fullstack-development/front-end-best-practices/tree/master/React). Следовать при разработке и изменении фронтенда AI Tender Tool на React. Учитывать топики JS и CSS (компонентный подход). Применять по смыслу, не впадать в крайности.
+Источник: [fullstack-development/front-end-best-practices — React](https://github.com/fullstack-development/front-end-best-practices/tree/master/React). Следовать при разработке и изменении фронтенда на React. Учитывать топики JS и CSS (компонентный подход). Применять по смыслу, не впадать в крайности.
 
 ---
 

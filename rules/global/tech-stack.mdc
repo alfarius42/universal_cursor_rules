@@ -1,35 +1,18 @@
 ---
-description: Технологический стек AI Tender Tool (Frontend)
+description: Универсальное правило фиксации техстека проекта
 alwaysApply: true
 ---
 
-# Стек AI Tender Tool
+# Техстек проекта (универсально)
 
-## Frontend
+Перед реализацией:
 
-- **React 18.3** — UI.
-- **TypeScript** — типизация (файлы .ts/.tsx).
-- **Vite 6** — сборка и dev-сервер (`npm run dev`, `npm run build`, выход в `build/`).
-- **Tailwind CSS** — стилизация; глобальные стили в `src/styles/globals.css`.
-- **UI:** Radix UI (примитивы: dialog, dropdown, select, tabs, form и др.), Lucide React (иконки), Sonner (toast), собственные компоненты в `src/components/ui/`.
-- **Утилиты стилей:** `class-variance-authority`, `clsx`, `tailwind-merge` (cn в `src/components/ui/utils.ts`).
-- **Формы:** react-hook-form.
-- **Данные/экспорт:** recharts (графики), xlsx (Excel), next-themes (темы).
-- **Прочее:** cmdk (command palette), vaul (drawer), react-resizable-panels, react-day-picker, input-otp, embla-carousel-react.
+1. Определить фактический стек репозитория (frontend/backend/runtime/package manager).
+2. Зафиксировать стек в локальной документации проекта (`ARCHITECTURE.md`/`README`/`CURSOR_CONTEXT.md`).
+3. Следовать локальным конвенциям и не навязывать стек из других проектов.
 
-## Архитектура
+Минимум фиксации в ответе:
 
-- SPA на Vite, клиентский роутинг.
-- Данные: моковые/локальные в `src/data/` (tendersData, mockTenders, mockAnalysis и т.д.); при появлении бэкенда — API-слой в отдельном модуле.
-- Контексты: `src/contexts/` (TagsContext, SettingsContext).
-- Типы: `src/types/` (tender, roles, index).
-- Страницы: `src/pages/` (TendersPage, AnalyticsPage и др.); фичи в `src/components/` (tender, team, settings, search, support и т.д.).
-
-## Особенности проекта
-
-- Инструмент для работы с тендерами: карточки тендеров, аналитика, команда, настройки, документы, сметы, чек-листы.
-- Документация по фичам: `src/docs/` (например permissions-implementation.md).
-
-## Backend
-
-Бэкенд в проекте пока не используется. При добавлении — описать стек и API в документации и в этом правиле.
+- выбранный/обнаруженный стек;
+- какие команды сборки/тестов/линта реально доступны в проекте;
+- какие ограничения стека влияют на решение.

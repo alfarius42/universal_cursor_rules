@@ -26,16 +26,16 @@ alwaysApply: true
 
 ## 2) Маршрутизация по интенту
 
-- `planning`: `architecture-planning-gate.mdc`, `documentation-index-first.mdc`, `primary-source.mdc`, `docs/active/DOCUMENTATION_INDEX.md`
-- `architecture`: `architecture-planning-gate.mdc`, `src/ARCHITECTURE.md`, `primary-source.mdc`, `risk-scoring-and-review-depth.mdc`, `definition-of-done-gates.mdc`
-- `bugfix`: `documentation-first.mdc`, `testing-and-testcases.mdc`, `lint-scoped-checks.mdc`, `definition-of-done-gates.mdc`
-- `feature`: `documentation-first.mdc`, `primary-source.mdc`, `i18n-bilingual-features.mdc`, `testing-and-testcases.mdc`, `e2e-testcases-doc.mdc`, `definition-of-done-gates.mdc`
-- `refactor`: `documentation-first.mdc`, `code-cleanliness.mdc`, `testing-and-testcases.mdc`, `lint-scoped-checks.mdc`, `risk-scoring-and-review-depth.mdc`
-- `performance`: `./rules/global/algorithm-complexity-selection.mdc`, `risk-scoring-and-review-depth.mdc`, `definition-of-done-gates.mdc`
-- `api`: `api-contract-gate.mdc`, `docs/active/API_TENANT_CHECKLIST.md`, `testing-and-testcases.mdc`, `migrations-doc-and-notify.mdc` (по необходимости)
+- `planning`: `project-rules-bootstrap.mdc`, `documentation-index-first.mdc`, `token-economy.mdc`
+- `architecture`: `architecture-planning-gate.mdc`, `context-first-architecture.mdc`, `nfr-priorities-and-quality-attributes.mdc`, `monolith-first-and-split-triggers.mdc`, `coupling-cohesion-budget.mdc`, `adr-lifecycle-and-expiration.mdc`, `architecture-decision-log.mdc`, `evolutionary-architecture-runway.mdc`, `fitness-functions.mdc`, `api-gateway-thin-rule.mdc` (если есть gateway), `architecture-observability-gate.mdc`, `deprecation-and-backward-compatibility.mdc`, `risk-scoring-and-review-depth.mdc`, `definition-of-done-gates.mdc`
+- `bugfix`: `documentation-first.mdc`, `testing-and-testcases.mdc`, `lint-scoped-checks.mdc`, `code-quality-gates.mdc`, `definition-of-done-gates.mdc`
+- `feature`: `documentation-first.mdc`, `i18n-bilingual-features.mdc`, `testing-and-testcases.mdc`, `e2e-testcases-doc.mdc`, `code-quality-gates.mdc`, `definition-of-done-gates.mdc`
+- `refactor`: `documentation-first.mdc`, `code-cleanliness.mdc`, `code-quality-gates.mdc`, `testing-and-testcases.mdc`, `lint-scoped-checks.mdc`, `risk-scoring-and-review-depth.mdc`
+- `performance`: `algorithm-complexity-selection.mdc`, `risk-scoring-and-review-depth.mdc`, `definition-of-done-gates.mdc`
+- `api`: `api-contract-gate.mdc`, `testing-and-testcases.mdc`, `code-quality-gates.mdc`, `migrations-doc-and-notify.mdc` (по необходимости)
 - `database`: `migrations-doc-and-notify.mdc`, `risk-scoring-and-review-depth.mdc`, `testing-and-testcases.mdc`
 - `docs`: `documentation-index-first.mdc`, `token-economy.mdc`, `communication-and-process.mdc`
-- `infra/ci`: `ci-cd.mdc`, `secrets-and-env.mdc`, `risk-scoring-and-review-depth.mdc`
+- `infra/ci`: `ci-cd.mdc`, `code-quality-gates.mdc`, `secrets-and-env.mdc`, `risk-scoring-and-review-depth.mdc`
 
 ## 3) Минимум фиксации в рабочем ответе
 

@@ -1,11 +1,11 @@
 ---
-description: Best practices для бэкенд-разработки (при появлении бэкенда в AI Tender Tool)
+description: Best practices для бэкенд-разработки
 alwaysApply: true
 ---
 
 # Backend Best Practices
 
-Источник: [futurice/backend-best-practices](https://github.com/futurice/backend-best-practices). **Следовать этим практикам обязательно** при добавлении и изменении бэкенда в проекте AI Tender Tool. Сейчас проект — только frontend; правило применяется при появлении API/сервера.
+Источник: [futurice/backend-best-practices](https://github.com/futurice/backend-best-practices). **Следовать этим практикам обязательно** при добавлении и изменении бэкенда.
 
 ---
 
@@ -60,4 +60,4 @@ alwaysApply: true
 
 ## Связь с проектом
 
-- При добавлении бэкенда в AI Tender Tool: сверяться с этим правилом и futurice/backend-best-practices. Отступления документировать в `docs/active/` или `src/docs/`.
+- При добавлении/изменении бэкенда сверяться с этим правилом и futurice/backend-best-practices. Отступления документировать в `docs/` или `src/docs/`.

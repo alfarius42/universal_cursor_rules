@@ -37,7 +37,7 @@ alwaysApply: true
 
 - `frontend`: i18n RU/EN + UI-тексты без хардкода + ручные/E2E кейсы при новой фиче.
 - `backend/api`: контракт/tenant-check + негативные сценарии + auth/rate-limit проверки.
-- `database`: запись в `backend/MIGRATIONS.md` + статус применения.
+- `database`: запись в журнале миграций проекта + статус применения.
 - `performance`: сложность и evidence по `algorithm-complexity-selection.mdc`.
 
 ## 4) Mini-gate для `planning` / `architecture`
@@ -49,8 +49,6 @@ alwaysApply: true
 3. Описано влияние на API/данные/безопасность/тестирование/i18n (по применимости).
 4. Указана совместимость (backward compatible или план миграции/rollout).
 5. Определён план верификации (какие проверки/метрики подтвердят решение).
-6. Обновлены архитектурные и support-документы при принятии решения:
-   - `src/ARCHITECTURE.md`
-   - `docs/active/DEVELOPER_MAINTENANCE_GUIDE.md`
+6. Обновлены архитектурные и support-документы проекта при принятии решения.
 
 Если задача только исследовательская и решение не принято, это должно быть явно отмечено как `proposal`, а блоки 4 и 6 фиксируются как `pending`.

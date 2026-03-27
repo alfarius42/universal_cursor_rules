@@ -10,10 +10,10 @@ alwaysApply: true
 ## 1) Обязательные проверки
 
 - Контракт не ломает существующих клиентов без явного плана миграции.
-- Изменения отражены в релевантной документации (`docs/active/*`, `src/Полная спецификация продукта - основной документ.md`), а при архитектурных последствиях — также в `src/ARCHITECTURE.md` и `docs/active/DEVELOPER_MAINTENANCE_GUIDE.md`.
-- Пройдён чек-лист tenant/isolation: `docs/active/API_TENANT_CHECKLIST.md`.
+- Изменения отражены в релевантной документации проекта (спецификация/API docs/архитектура/maintenance guide).
+- Пройдён tenant/isolation checklist проекта (если multi-tenant контекст применим).
 - Для новых/изменённых эндпоинтов есть позитивные и негативные тест-сценарии.
-- При изменении БД обновлён `backend/MIGRATIONS.md` по правилу `migrations-doc-and-notify.mdc`.
+- При изменении БД обновлён журнал миграций проекта по правилу `migrations-doc-and-notify.mdc`.
 
 ## 2) Блокирующие условия
 

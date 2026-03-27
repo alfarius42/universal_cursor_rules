@@ -1,35 +1,39 @@
 ---
-description: Правила CI/CD — ветки, jobs, деплой, секреты (AI Tender Tool)
+description: Универсальные правила CI/CD — quality gates, проверки, деплой, секреты
 globs: .github/**/*.yml,.github/**/*.yaml
 alwaysApply: false
 ---
 
-# CI/CD (AI Tender Tool)
+# CI/CD (Global Template)
 
-Проект — frontend на Vite (сборка в `build/`) и backend на Express/TypeScript (сборка в `backend/dist/`).
+Правило задаёт универсальный минимум CI/CD. Конкретные команды и структура задаются локальными правилами проекта.
 
 ## Триггеры
 
-- **push main** — полный пайплайн + деплой на продакшн.
-- **push develop** — lint (если есть), build без деплоя.
-- **pull_request** в main/develop — проверки без деплоя.
+- `pull_request` в основную ветку — проверки без деплоя.
+- `push` в защищённые ветки — полный pipeline.
+- `release/tag` (по модели проекта) — production deployment.
 
 ## Jobs (порядок)
 
-В `.github/workflows/ci.yml`: два независимых job — **frontend** и **backend**.
-
-- **frontend:** checkout, setup Node 20, `npm ci`, `npm run lint`, `npm run typecheck` (временно continue-on-error), `npm run test`, `npm run build`. Рабочая директория — корень.
-- **backend:** checkout, setup Node 20, `npm install` в `backend`, `npm run typecheck`, `npm run build`, `npm run test`. Рабочая директория — `backend`.
-
-Дополнительно (при настройке деплоя): **deploy-production** — только при push в main; **health-check** — опционально после деплоя.
+Минимальный порядок:
+1. Checkout + setup runtime/toolchain
+2. Install dependencies
+3. Static checks (lint/type/security)
+4. Quality gates
+5. Tests
+6. Build/package
+7. Deploy (для целевых веток/тегов)
+8. Post-deploy health check
 
 ## Секреты (не в коде)
 
-- Деплой: SSH_PRIVATE_KEY, REMOTE_HOST, REMOTE_USER, REMOTE_PORT, FRONTEND_REMOTE_PATH. Или FTP: FTP_HOST, FTP_USERNAME, FTP_PASSWORD, FTP_FRONTEND_PATH.
-- Сборка: VITE_* по необходимости.
-- PRODUCTION_URL для health-check.
+- Секреты и токены — только в secret storage CI/CD.
+- Запрещено хранить секреты в коде, workflow, артефактах и логах.
+- Для релиза — отдельные переменные окружения на каждую среду.
 
 ## Рекомендации
 
-- Использовать `actions/checkout@v4`, `actions/setup-node@v4` с `cache: 'npm'`.
-- Артефакты: retention-days 7; при отсутствии файлов — `if-no-files-found: ignore`.
+- Принцип fail-fast: quality gates блокируют merge/deploy.
+- Включать duplication gate и comment contract gate.
+- Конкретные команды (`npm/pnpm/poetry/gradle/go`) задаются в локальных правилах проекта.

@@ -1,138 +1,65 @@
 ---
-description: Оркестратор Cursor — порядок обращения к правилам и skills для AI Tender Tool.
+description: Глобальный оркестратор Cursor — универсальный маршрут правил и gates
 alwaysApply: true
 ---
 
-# Оркестратор правил и skills (AI Tender Tool)
+# Оркестратор правил и skills (Global)
 
-**Назначение:** уменьшить шум при большом числе правил и skills. Сначала классифицировать задачу, затем открывать только узкий набор релевантных файлов.
+**Назначение:** дать универсальный порядок работы для любого репозитория.
 
 ## 1. Порядок работы (маршрут по типу задачи)
 
 | Этап | Куда |
 |------|------|
-| Старт любой задачи по продукту/коду | `docs/active/DOCUMENTATION_INDEX.md` -> далее по `token-economy.mdc` |
-| Любая фича/изменение поведения | `documentation-first.mdc` -> `src/Полная спецификация продукта - основной документ.md` (`primary-source.mdc`) |
-| Архитектура и границы модулей | `documentation-index-first.mdc` + `src/ARCHITECTURE.md` + `tech-stack.mdc` |
+| Старт любой задачи | `project-rules-bootstrap.mdc` -> `task-intent-routing.mdc` |
+| Поиск документации | `documentation-index-first.mdc` + `token-economy.mdc` |
+| Архитектура и границы модулей | `architecture-planning-gate.mdc` + профильные архитектурные правила |
 | Классификация задачи и выбор маршрута | `task-intent-routing.mdc` |
-| Планирование и архитектурные решения | `architecture-planning-gate.mdc` + `src/ARCHITECTURE.md` + `docs/active/DEVELOPER_MAINTENANCE_GUIDE.md` |
-| Типовые сценарии реализации | `project-playbooks.mdc` + `docs/active/AI_AGENT_PLAYBOOKS.md` |
-| Локализация UI (RU/EN) | `i18n-bilingual-features.mdc` + `docs/active/I18N_RU_EN_GUIDE.md` |
-| Проверка качества после правок кода | `testing-and-testcases.mdc` -> `lint-scoped-checks.mdc` -> `ci-cd.mdc` |
+| Планирование и архитектурные решения | `architecture-planning-gate.mdc` + `context-first-architecture.mdc` + `nfr-priorities-and-quality-attributes.mdc` + `coupling-cohesion-budget.mdc` + `fitness-functions.mdc` |
+| Типовые сценарии реализации | `project-playbooks.mdc` + локальные playbooks проекта |
+| Жёсткие quality gates кода и CI | `code-quality-gates.mdc` + `code-cleanliness.mdc` + `ci-cd.mdc` |
+| Проверка качества после правок кода | `testing-and-testcases.mdc` -> `lint-scoped-checks.mdc` -> `code-quality-gates.mdc` -> `ci-cd.mdc` |
 | DoD и формат финального ответа | `definition-of-done-gates.mdc` |
 | Проверка фактов и запрет выдумок | `anti-hallucination-verification.mdc` |
 | Риск-оценка и глубина ревью | `risk-scoring-and-review-depth.mdc` |
 | Секреты и env | `secrets-and-env.mdc` |
 | БД-миграции | `migrations-doc-and-notify.mdc` |
-| API-контракты и tenant-safe изменения | `api-contract-gate.mdc` + `docs/active/API_TENANT_CHECKLIST.md` |
-| Dev-серверы и порты | `dev-server-no-background.mdc` |
+| API-контракты и совместимость | `api-contract-gate.mdc` + `deprecation-and-backward-compatibility.mdc` |
+| Dev-серверы и порты | `dev-server-no-background.mdc` (если применимо) |
 | Git и процесс коммитов | `git-workflow.mdc`, `project-conventions.mdc` |
 | Подбор внешнего skill | `skill-discovery-from-awesome-agent-skills.mdc` |
-| Backend-практики | `backend-best-practices.mdc` |
-| Frontend React-практики | `frontend-react-best-practices.mdc` |
-| Документация ручного/E2E тестирования | `e2e-testcases-doc.mdc` |
+| Backend/Frontend практики | профильные правила локального репозитория |
+| Документация ручного/E2E тестирования | `e2e-testcases-doc.mdc` (если применимо) |
 | Стиль коммуникации и порядок процесса | `communication-and-process.mdc` |
-| Интеграция СБИС Торги | `sbis-tender-api-skill.mdc` + `.cursor/skills/sbis-tender-api-integration/SKILL.md` |
-| Интеграция ЮKassa | `.cursor/skills/yookassa-integration/SKILL.md` |
-| Интеграция Replicate | `.cursor/skills/replicate-cursor-integration/SKILL.md` |
-| Выбор алгоритма/структуры данных/индексов | **глобальное правило:** `./rules/global/algorithm-complexity-selection.mdc` |
+| Интеграции внешних провайдеров | профильный skill/rule конкретного проекта |
+| Выбор алгоритма/структуры данных/индексов | `algorithm-complexity-selection.mdc` |
 
-## 2. Индекс правил проекта (`.cursor/rules/`)
+## 2. Индекс групп правил
 
-**Документация и контекст:** `documentation-index-first.mdc`, `documentation-first.mdc`, `token-economy.mdc`, `primary-source.mdc`, `developer-maintenance-doc.mdc`
+**Документация и контекст:** `project-rules-bootstrap.mdc`, `documentation-index-first.mdc`, `documentation-first.mdc`, `token-economy.mdc`, `primary-source.mdc`
 
-**Качество и тесты:** `testing-and-testcases.mdc`, `e2e-testcases-doc.mdc`, `lint-scoped-checks.mdc`, `ci-cd.mdc`, `code-cleanliness.mdc`, `definition-of-done-gates.mdc`
+**Качество и тесты:** `testing-and-testcases.mdc`, `e2e-testcases-doc.mdc`, `lint-scoped-checks.mdc`, `ci-cd.mdc`, `code-cleanliness.mdc`, `code-quality-gates.mdc`, `definition-of-done-gates.mdc`
 
 **Безопасность и окружение:** `secrets-and-env.mdc`, `migrations-doc-and-notify.mdc`, `dev-server-no-background.mdc`, `anti-hallucination-verification.mdc`, `api-contract-gate.mdc`
 
-**Процесс и Git:** `git-workflow.mdc`, `project-conventions.mdc`, `communication-and-process.mdc`, `task-intent-routing.mdc`, `risk-scoring-and-review-depth.mdc`, `project-playbooks.mdc`, `architecture-planning-gate.mdc`
+**Процесс и Git:** `git-workflow.mdc`, `project-conventions.mdc`, `communication-and-process.mdc`, `task-intent-routing.mdc`, `risk-scoring-and-review-depth.mdc`, `project-playbooks.mdc`, `architecture-planning-gate.mdc`, `context-first-architecture.mdc`, `nfr-priorities-and-quality-attributes.mdc`, `monolith-first-and-split-triggers.mdc`, `adr-lifecycle-and-expiration.mdc`, `architecture-decision-log.mdc`, `evolutionary-architecture-runway.mdc`, `deprecation-and-backward-compatibility.mdc`
 
-**Стек и платформа:** `tech-stack.mdc`, `backend-best-practices.mdc`, `frontend-react-best-practices.mdc`, `i18n-bilingual-features.mdc`, `sbis-tender-api-skill.mdc`
+**Стек и платформа:** `tech-stack.mdc`, `backend-best-practices.mdc`, `frontend-react-best-practices.mdc`, `i18n-bilingual-features.mdc`, `coupling-cohesion-budget.mdc`, `fitness-functions.mdc`, `api-gateway-thin-rule.mdc`, `architecture-observability-gate.mdc`
 
 *При добавлении нового правила в `.cursor/rules/` добавлять его в соответствующую группу этого раздела.*
 
-## 3. Индекс проектных skills (`.cursor/skills/<id>/SKILL.md`)
+## 3. Global -> Local правило (обязательно)
 
-| Область | Skill (папка) |
-|---------|----------------|
-| СБИС Торги API | `sbis-tender-api-integration` |
-| ЮKassa | `yookassa-integration` |
-| Replicate | `replicate-cursor-integration` |
+Для каждого проекта:
 
-**Проверка состава skills (PowerShell):** `Get-ChildItem .cursor\skills -Directory | Sort-Object Name`
+1. Создаётся локальная копия правил в `<repo>/.cursor/rules/`.
+2. Агент в проекте работает **по локальным правилам проекта**.
+3. Глобальные правила используются как baseline/шаблон и источник обновлений.
+4. При конфликте глобального и локального правила приоритет у локального.
 
-## 4. Глобальные источники (вне репозитория)
+## 4. Когда вызывать `code-quality-gates.mdc`
 
-| Источник | Назначение |
-|----------|------------|
-| User Rules Cursor | Персональные обязательные инструкции пользователя |
-| `~/.cursor/skills/` | Общие локальные skills пользователя |
-| MCP-конфиги и дескрипторы tools | Инструкции по MCP в текущей сессии |
-| `./rules/global/algorithm-complexity-selection.mdc` | Глобальное правило выбора алгоритмов по сложности и эксплуатационной эффективности |
-
-### 4.1 Когда явно обращаться к `algorithm-complexity-selection.mdc`
-
-Обращаться к правилу **до выбора реализации** в следующих случаях:
-
-- Есть выбор между 2+ алгоритмами/структурами данных для одной задачи.
-- Идёт рефакторинг участка с риском деградации (`nested loops`, множественные проходы, тяжелые выборки/join/range).
-- Проектируются или меняются индексы БД, решается выбор между индексом, кэшем и линейным проходом.
-- Есть жалобы на производительность или оптимизируется hot path.
-- Предлагается решение с потенциально высокой сложностью (`O(n^2)+`, `O(2^n)`, `O(n!)`).
-
-Что фиксировать по результату применения правила:
-
-- профиль нагрузки (`n`, read-heavy/write-heavy, online/batch);
-- минимум 2 альтернативы (time average/worst + memory);
-- ключевые trade-offs (включая стоимость обновлений/поддержки индексов);
-- evidence: что уже измерено или что нужно измерить (`benchmark`, `profiling`, `EXPLAIN`, latency/throughput метрики).
-
-### 4.2 Жёсткий gate для задач по производительности (strict mode)
-
-Если задача помечена как одна из категорий:
-
-- `algorithm_change`
-- `data_structure_change`
-- `query_optimization`
-- `performance_issue`
-- `hot_path`
-
-то включается **strict gate**: финальный ответ нельзя отдавать, пока не выполнены все проверки.
-
-**Обязательный чеклист strict gate:**
-
-- Указан контекст нагрузки: ожидаемый `n`, профиль `read/write`, режим `online/batch`, ограничения `latency/throughput/memory`.
-- Сравнены минимум 2 реалистичные альтернативы.
-- Для каждой альтернативы есть `average` и `worst-case` по времени и оценка памяти.
-- Явно описаны trade-offs (включая стоимость обновлений/поддержки индексов).
-- Для спорного выбора есть evidence-план или результаты измерений (`benchmark`, `profiling`, `EXPLAIN`, p50/p95/p99, throughput, memory).
-- Для решений `O(n^2)+`, `O(2^n)`, `O(n!)` есть чёткие границы применимости и обоснование.
-
-**Блокирующие условия (ответ отклоняется и дорабатывается):**
-
-- Нет `worst-case` оценки.
-- Нет сравнения альтернатив.
-- Есть сильные утверждения о производительности без метрик/плана измерений.
-- Предложено потенциально дорогое решение без ограничений по `n` и профилю нагрузки.
-
-**Формат фиксации решения (обязателен в финале):**
-
-- `Выбранный вариант`
-- `Почему подходит под текущий профиль`
-- `Ключевые trade-offs`
-- `Какие метрики подтверждают` (или `какие нужно снять`)
-
-**Режимы применения:**
-
-- **strict**: включать для backend, SQL, API hot path, batch/ETL, поисковых/аналитических задач.
-- **light**: для локальных UI-правок без влияния на алгоритмы и нагрузку (достаточно краткой проверки без полной таблицы альтернатив).
-
-### 4.3 Как проверить, что `algorithm-complexity-selection.mdc` действительно применён
-
-- Файл правила доступен по пути `./rules/global/algorithm-complexity-selection.mdc` и читается без ошибок.
-- В рабочем решении явно есть:
-  - оценка `n` и профиля нагрузки;
-  - минимум 2 альтернативы;
-  - `worst-case` оценка;
-  - evidence-часть (измерения или план измерений).
-- При отсутствии этих пунктов для performance-задач ответ считается неполным и должен быть доработан.
+- Любые задачи с правками кода (`feature`, `bugfix`, `refactor`, `api`) перед завершением.
+- Любые задачи `infra/ci`, где меняются workflow/scripts/package.json.
+- Когда есть риск clone-paste логики или добавляются новые публичные/сложные функции.
+- Когда задача выполнена AI-агентом и нужен жёсткий контроль самодокументируемости.
