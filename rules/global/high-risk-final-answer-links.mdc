@@ -1,0 +1,22 @@
+---
+description: High-risk финальный отчёт должен содержать ссылки на обязательные review-артефакты
+alwaysApply: true
+---
+
+# High-Risk Final Answer Links
+
+## Когда обязательно
+
+- Для high-risk задач: auth, billing/payments, API contracts, database migrations, tenant isolation, critical performance paths.
+
+## Обязательное требование
+
+- В финальном ответе должен быть отдельный блок `HighRiskFinalAnswerLinks` с ссылками на:
+  - ADR-lite
+  - High-risk review checklist
+  - Domain gotchas register
+  - Threat model mini
+
+## Auto-check
+
+- Проект должен иметь machine-checkable механизм (скрипт/CI), который валидирует наличие этих ссылок в review-артефакте задачи.

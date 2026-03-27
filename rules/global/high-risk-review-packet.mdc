@@ -1,0 +1,30 @@
+---
+description: Обязательный review packet для high-risk задач
+alwaysApply: true
+---
+
+# High-Risk Review Packet
+
+## Когда обязательно
+
+- Любые high-risk изменения: auth, billing/payments, API contracts, database migrations, tenant isolation, critical performance paths.
+
+## Обязательные артефакты
+
+- ADR-lite (решение, альтернативы, trade-offs, rollback).
+- Threat-model mini (минимум 3 угрозы + mitigation).
+- Domain gotchas register (проверка/обновление).
+- High-risk review checklist (статус прохождения).
+
+## Требования к процессу
+
+- Артефакты создаются/обновляются в документации проекта.
+- Ссылки на артефакты указываются в финальном отчёте по задаче.
+- При отсутствии артефактов high-risk задача не считается завершённой.
+
+## Блокирующие условия
+
+- Нет ADR-lite.
+- Нет threat-model mini.
+- Нет checklist статуса.
+- Нет rollback/mitigation плана.

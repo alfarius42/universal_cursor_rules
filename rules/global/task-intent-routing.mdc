@@ -27,13 +27,13 @@ alwaysApply: true
 ## 2) Маршрутизация по интенту
 
 - `planning`: `project-rules-bootstrap.mdc`, `documentation-index-first.mdc`, `token-economy.mdc`
-- `architecture`: `architecture-planning-gate.mdc`, `context-first-architecture.mdc`, `nfr-priorities-and-quality-attributes.mdc`, `monolith-first-and-split-triggers.mdc`, `coupling-cohesion-budget.mdc`, `adr-lifecycle-and-expiration.mdc`, `architecture-decision-log.mdc`, `evolutionary-architecture-runway.mdc`, `fitness-functions.mdc`, `api-gateway-thin-rule.mdc` (если есть gateway), `architecture-observability-gate.mdc`, `deprecation-and-backward-compatibility.mdc`, `risk-scoring-and-review-depth.mdc`, `definition-of-done-gates.mdc`
+- `architecture`: `architecture-planning-gate.mdc`, `high-risk-review-packet.mdc`, `high-risk-final-answer-links.mdc`, `context-first-architecture.mdc`, `nfr-priorities-and-quality-attributes.mdc`, `monolith-first-and-split-triggers.mdc`, `coupling-cohesion-budget.mdc`, `adr-lifecycle-and-expiration.mdc`, `architecture-decision-log.mdc`, `evolutionary-architecture-runway.mdc`, `fitness-functions.mdc`, `api-gateway-thin-rule.mdc` (если есть gateway), `architecture-observability-gate.mdc`, `deprecation-and-backward-compatibility.mdc`, `risk-scoring-and-review-depth.mdc`, `definition-of-done-gates.mdc`
 - `bugfix`: `documentation-first.mdc`, `testing-and-testcases.mdc`, `lint-scoped-checks.mdc`, `code-quality-gates.mdc`, `definition-of-done-gates.mdc`
 - `feature`: `documentation-first.mdc`, `i18n-bilingual-features.mdc`, `testing-and-testcases.mdc`, `e2e-testcases-doc.mdc`, `code-quality-gates.mdc`, `definition-of-done-gates.mdc`
 - `refactor`: `documentation-first.mdc`, `code-cleanliness.mdc`, `code-quality-gates.mdc`, `testing-and-testcases.mdc`, `lint-scoped-checks.mdc`, `risk-scoring-and-review-depth.mdc`
-- `performance`: `algorithm-complexity-selection.mdc`, `risk-scoring-and-review-depth.mdc`, `definition-of-done-gates.mdc`
-- `api`: `api-contract-gate.mdc`, `testing-and-testcases.mdc`, `code-quality-gates.mdc`, `migrations-doc-and-notify.mdc` (по необходимости)
-- `database`: `migrations-doc-and-notify.mdc`, `risk-scoring-and-review-depth.mdc`, `testing-and-testcases.mdc`
+- `performance`: `algorithm-complexity-selection.mdc`, `high-risk-review-packet.mdc`, `high-risk-final-answer-links.mdc`, `risk-scoring-and-review-depth.mdc`, `definition-of-done-gates.mdc`
+- `api`: `api-contract-gate.mdc`, `high-risk-review-packet.mdc`, `high-risk-final-answer-links.mdc`, `testing-and-testcases.mdc`, `code-quality-gates.mdc`, `migrations-doc-and-notify.mdc` (по необходимости)
+- `database`: `migrations-doc-and-notify.mdc`, `high-risk-review-packet.mdc`, `high-risk-final-answer-links.mdc`, `risk-scoring-and-review-depth.mdc`, `testing-and-testcases.mdc`
 - `docs`: `documentation-index-first.mdc`, `token-economy.mdc`, `communication-and-process.mdc`
 - `infra/ci`: `ci-cd.mdc`, `code-quality-gates.mdc`, `secrets-and-env.mdc`, `risk-scoring-and-review-depth.mdc`
 

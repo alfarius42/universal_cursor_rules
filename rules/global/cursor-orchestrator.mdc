@@ -16,6 +16,8 @@ alwaysApply: true
 | Архитектура и границы модулей | `architecture-planning-gate.mdc` + профильные архитектурные правила |
 | Классификация задачи и выбор маршрута | `task-intent-routing.mdc` |
 | Планирование и архитектурные решения | `architecture-planning-gate.mdc` + `context-first-architecture.mdc` + `nfr-priorities-and-quality-attributes.mdc` + `coupling-cohesion-budget.mdc` + `fitness-functions.mdc` |
+| High-risk review packet | `high-risk-review-packet.mdc` |
+| High-risk final answer links | `high-risk-final-answer-links.mdc` |
 | Типовые сценарии реализации | `project-playbooks.mdc` + локальные playbooks проекта |
 | Жёсткие quality gates кода и CI | `code-quality-gates.mdc` + `code-cleanliness.mdc` + `ci-cd.mdc` |
 | Проверка качества после правок кода | `testing-and-testcases.mdc` -> `lint-scoped-checks.mdc` -> `code-quality-gates.mdc` -> `ci-cd.mdc` |
@@ -38,7 +40,7 @@ alwaysApply: true
 
 **Документация и контекст:** `project-rules-bootstrap.mdc`, `documentation-index-first.mdc`, `documentation-first.mdc`, `token-economy.mdc`, `primary-source.mdc`
 
-**Качество и тесты:** `testing-and-testcases.mdc`, `e2e-testcases-doc.mdc`, `lint-scoped-checks.mdc`, `ci-cd.mdc`, `code-cleanliness.mdc`, `code-quality-gates.mdc`, `definition-of-done-gates.mdc`
+**Качество и тесты:** `high-risk-review-packet.mdc`, `high-risk-final-answer-links.mdc`, `testing-and-testcases.mdc`, `e2e-testcases-doc.mdc`, `lint-scoped-checks.mdc`, `ci-cd.mdc`, `code-cleanliness.mdc`, `code-quality-gates.mdc`, `definition-of-done-gates.mdc`
 
 **Безопасность и окружение:** `secrets-and-env.mdc`, `migrations-doc-and-notify.mdc`, `dev-server-no-background.mdc`, `anti-hallucination-verification.mdc`, `api-contract-gate.mdc`
 
